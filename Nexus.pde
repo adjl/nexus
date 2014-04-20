@@ -6,6 +6,7 @@ final int NUMBER_OF_BEAMS = 20;
 // --------------------------
 
 final color BLACK = color(0, 0, 0);
+
 Beam[] mouseBeams = new Beam[4];
 Beam[] beams;
 boolean mouseBeamsActive = false;
@@ -52,9 +53,10 @@ void keyPressed() {
 }
 
 void mousePressed() {
+  int beamColour = int(random(mouseBeams.length));
   mouseBeamsActive = true;
-  for (int i = 0; i < mouseBeams.length; i++) {
-    mouseBeams[i] = new Beam(Direction.values()[i], Distance.NEAR, mouseX, mouseY);
+  for (int i = 0; i < mouseBeams.length; i++, beamColour = ++beamColour % mouseBeams.length) {
+    mouseBeams[i] = new Beam(Direction.values()[i], Distance.NEAR, beamColour, mouseX, mouseY);
     mouseBeams[i].draw();
   }
 }
