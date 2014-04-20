@@ -15,15 +15,20 @@ void setup() {
   for (int i = 0; i < beams.length; i++) {
     int direction = int(random(Direction.values().length));
     int distance = int(random(Distance.values().length));
-    beams[i] = new Beam(Direction.values()[direction], Distance.values()[distance]);
+    beams[i] = new Beam(Direction.values()[direction], Distance.values()[distance], millis());
   }
 }
 
 void draw() {
   background(BLACK);
   for (int i = 0; i < beams.length; i++) {
-    beams[i].move();
-    if (beams[i].isActive()) beams[i].draw();
+    if (beams[i].isActive()) {
+      beams[i].move();
+      beams[i].draw();
+    } else {
+      beams[i].ready(millis());
+      if (beams[i].isActive()) beams[i].draw();
+    }
   }
 }
 
