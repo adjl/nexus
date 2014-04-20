@@ -28,6 +28,17 @@ class Beam {
     active = false;
   }
 
+  Beam(Direction direction, Distance distance, int headX, int headY) {
+    this.direction = direction;
+    this.headX = headX;
+    this.headY = headY;
+    setHeadSizeAndSpeed(distance);
+    setTailAndHaloAttributes();
+    randomiseColour();
+    timeCreated = startTime = 0;
+    active = true;
+  }
+
   void setHeadXYCoordinates() {
     if (direction == Direction.UP) {
       headX = int(random(width));
