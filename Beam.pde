@@ -1,6 +1,7 @@
 class Beam {
 
   static final float ALPHA = 127.5;
+  static final int START_TIME = 10000;
 
   final color RED = color(255, 0, 0);
   final color GREEN = color(0, 255, 0);
@@ -13,15 +14,18 @@ class Beam {
   int tailLength, haloX, haloY;
   float haloSize;
   color colour;
+  int timeCreated, startTime;
   boolean active;
 
-  Beam(Direction direction, Distance distance) {
+  Beam(Direction direction, Distance distance, int timeCreated) {
     this.direction = direction;
+    this.timeCreated = timeCreated;
     setHeadXYCoordinates();
     setHeadSizeAndSpeed(distance);
     setTailAndHaloAttributes();
-    setRandomColour();
-    active = true;
+    randomiseColour();
+    randomiseStartTime();
+    active = false;
   }
 
   void setHeadXYCoordinates() {
@@ -65,12 +69,20 @@ class Beam {
     haloSize = headSize * 1.5;
   }
 
-  void setRandomColour() {
+  void randomiseColour() {
     colour = COLOURS[int(random(COLOURS.length))];
+  }
+
+  void randomiseStartTime() {
+    startTime = int(random(START_TIME + 1));
   }
 
   boolean isActive() {
     return active;
+  }
+
+  void ready(int milliseconds) {
+    if (milliseconds - timeCreated >= startTime) active = true;
   }
 
   void move() {
