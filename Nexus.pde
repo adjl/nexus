@@ -53,10 +53,14 @@ void keyPressed() {
 }
 
 void mousePressed() {
-  int beamColour = int(random(mouseBeams.length));
+  IntList beamColours = new IntList();
+  for (int i = 0; i < mouseBeams.length; i++) {
+    beamColours.append(i);
+  }
+  beamColours.shuffle();
   mouseBeamsActive = true;
-  for (int i = 0; i < mouseBeams.length; i++, beamColour = ++beamColour % mouseBeams.length) {
-    mouseBeams[i] = new Beam(Direction.values()[i], Distance.NEAR, beamColour, mouseX, mouseY);
+  for (int i = 0; i < mouseBeams.length; i++) {
+    mouseBeams[i] = new Beam(Direction.values()[i], Distance.NEAR, beamColours.get(i), mouseX, mouseY);
     mouseBeams[i].draw();
   }
 }
