@@ -1,58 +1,72 @@
 class Beam {
 
-  Direction direction;
-  Distance distance;
-  int x;
-  int y;
-  int size;
-  int speed;
-  boolean active;
-  color colour;
+  static final float ALPHA = 127.5;
 
-  color[] colours = {
-    color(255, 0, 0),
-    color(0, 255, 0),
-    color(0, 0, 255),
-    color(255, 255, 0)
-  };
+  final color RED = color(255, 0, 0);
+  final color GREEN = color(0, 255, 0);
+  final color BLUE = color(0, 0, 255);
+  final color YELLOW = color(255, 255, 0);
+  final color[] COLOURS = {RED, GREEN, BLUE, YELLOW};
+
+  Direction direction;
+  int headX, headY, headSize, speed;
+  int tailLength, haloX, haloY;
+  float haloSize;
+  color colour;
+  boolean active;
 
   Beam(Direction direction, Distance distance) {
     this.direction = direction;
-    this.distance = distance;
+    setHeadXYCoordinates();
+    setHeadSizeAndSpeed(distance);
+    setTailAndHaloAttributes();
+    setRandomColour();
+    active = true;
+  }
 
+  void setHeadXYCoordinates() {
     if (direction == Direction.UP) {
-      x = int(random(width));
-      y = height - 1;
+      headX = int(random(width));
+      headY = height - 1;
     } else if (direction == Direction.RIGHT) {
-      x = 0;
-      y = int(random(height));
+      headX = 0;
+      headY = int(random(height));
     } else if (direction == Direction.DOWN) {
-      x = int(random(width));
-      y = 0;
+      headX = int(random(width));
+      headY = 0;
     } else if (direction == Direction.LEFT) {
-      x = width - 1;
-      y = int(random(height));
+      headX = width - 1;
+      headY = int(random(height));
     } else {
       println("Error: Invalid direction. Exiting...");
       exit();
     }
+  }
 
+  void setHeadSizeAndSpeed(Distance distance) {
     if (distance == Distance.NEAR) {
-      size = 7;
-      speed = 4;
+      headSize = 9;
+      speed = 5;
     } else if (distance == Distance.MIDDLE) {
-      size = 6;
-      speed = 2;
+      headSize = 7;
+      speed = 4;
     } else if (distance == Distance.FAR) {
-      size = 5;
-      speed = 1;
+      headSize = 5;
+      speed = 3;
     } else {
       println("Error: Invalid distance. Exiting...");
       exit();
     }
+  }
 
-    active = true;
-    colour = colours[int(random(4))];
+  void setTailAndHaloAttributes() {
+    tailLength = headSize * 20;
+    haloX = haloY = headSize / 2;
+    haloSize = headSize * 1.5;
+  }
+
+  void setRandomColour() {
+    colour = COLOURS[int(random(COLOURS.length))];
   }
 
   boolean isActive() {
@@ -61,17 +75,17 @@ class Beam {
 
   void move() {
     if (direction == Direction.UP) {
-      y -= speed;
-      if (y + size * 20 < 0) active = false; // Include tail length
+      headY -= speed;
+      if (headY + tailLength < 0) active = false;
     } else if (direction == Direction.RIGHT) {
-      x += speed;
-      if (x - size * 20 >= width) active = false;
+      headX += speed;
+      if (headX - tailLength >= width) active = false;
     } else if (direction == Direction.DOWN) {
-      y += speed;
-      if (y - size * 20 >= height) active = false;
+      headY += speed;
+      if (headY - tailLength >= height) active = false;
     } else if (direction == Direction.LEFT) {
-      x -= speed;
-      if (x + size * 20 < 0) active = false;
+      headX -= speed;
+      if (headX + tailLength < 0) active = false;
     } else {
       println("Error: Invalid direction. Exiting...");
       exit();
@@ -79,29 +93,28 @@ class Beam {
   }
 
   void draw() {
-    fill(colour, 127.5); // Temporary colour, only for transparency
-
+    fill(colour, ALPHA);
     pushMatrix();
 
     if (direction == Direction.UP) {
-      translate(x, y);
+      translate(headX, headY);
     } else if (direction == Direction.RIGHT) {
-      translate(x + size, y);
+      translate(headX + headSize, headY);
       rotate(HALF_PI);
     } else if (direction == Direction.DOWN) {
-      translate(x + size, y + size);
+      translate(headX + headSize, headY + headSize);
       rotate(PI);
     } else if (direction == Direction.LEFT) {
-      translate(x, y + size);
+      translate(headX, headY + headSize);
       rotate(PI + HALF_PI);
     } else {
       println("Error: Invalid direction. Exiting...");
       exit();
     }
 
-    rect(0, 0, size, size * 20); // Tail
-    rect(0, 0, size, size); // Head
-    ellipse(size / 2.0, size / 2.0, size * 1.5, size * 1.5); // Halo
+    rect(0, 0, headSize, tailLength); // Tail
+    rect(0, 0, headSize, headSize); // Head
+    ellipse(haloX, haloY, haloSize, haloSize); // Halo
 
     popMatrix();
   }
