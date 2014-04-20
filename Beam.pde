@@ -28,13 +28,13 @@ class Beam {
     active = false;
   }
 
-  Beam(Direction direction, Distance distance, int headX, int headY) {
+  Beam(Direction direction, Distance distance, int colour, int headX, int headY) {
     this.direction = direction;
+    this.colour = COLOURS[colour];
     this.headX = headX;
     this.headY = headY;
     setHeadSizeAndSpeed(distance);
     setTailAndHaloAttributes();
-    randomiseColour();
     timeCreated = startTime = 0;
     active = true;
   }
