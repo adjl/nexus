@@ -6,7 +6,9 @@ final int NUMBER_OF_BEAMS = 20;
 // --------------------------
 
 final color BLACK = color(0, 0, 0);
+Beam[] mouseBeams = new Beam[4];
 Beam[] beams;
+boolean mouseBeamsActive = false;
 
 void setup() {
   size(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -30,6 +32,15 @@ void draw() {
       if (beams[i].isActive()) beams[i].draw();
     }
   }
+  boolean allMouseBeamsInactive = true;
+  if (mouseBeamsActive) {
+    for (int i = 0; i < mouseBeams.length; i++) {
+      mouseBeams[i].move();
+      mouseBeams[i].draw();
+      if (mouseBeams[i].isActive()) allMouseBeamsInactive = false;
+    }
+  }
+  if (allMouseBeamsInactive) mouseBeamsActive = false;
 }
 
 void keyPressed() {
@@ -37,5 +48,13 @@ void keyPressed() {
     case 'q': // Quit
       exit();
       break;
+  }
+}
+
+void mousePressed() {
+  mouseBeamsActive = true;
+  for (int i = 0; i < mouseBeams.length; i++) {
+    mouseBeams[i] = new Beam(Direction.values()[i], Distance.NEAR, mouseX, mouseY);
+    mouseBeams[i].draw();
   }
 }
