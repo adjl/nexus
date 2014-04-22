@@ -10,7 +10,7 @@ class Beam {
   final color[] COLOURS = {RED, GREEN, BLUE, YELLOW};
 
   Direction direction;
-  int headX, headY, headSize, speed;
+  int headX, headY, headSize;
   int tailLength, haloX, haloY;
   float haloSize;
   color colour;
@@ -66,13 +66,10 @@ class Beam {
   void setHeadSizeAndSpeed(Distance distance) {
     if (distance == Distance.NEAR) {
       headSize = 9;
-      speed = 9;
     } else if (distance == Distance.MIDDLE) {
       headSize = 7;
-      speed = 7;
     } else if (distance == Distance.FAR) {
       headSize = 5;
-      speed = 5;
     } else {
       println("Error: Invalid distance. Exiting...");
       exit();
@@ -102,16 +99,16 @@ class Beam {
 
   void move() {
     if (direction == Direction.UP) {
-      headY -= speed;
+      headY -= headSize;
       if (headY + tailLength < 0) active = false;
     } else if (direction == Direction.RIGHT) {
-      headX += speed;
+      headX += headSize;
       if (headX - tailLength >= width) active = false;
     } else if (direction == Direction.DOWN) {
-      headY += speed;
+      headY += headSize;
       if (headY - tailLength >= height) active = false;
     } else if (direction == Direction.LEFT) {
-      headX -= speed;
+      headX -= headSize;
       if (headX + tailLength < 0) active = false;
     } else {
       println("Error: Invalid direction. Exiting...");
