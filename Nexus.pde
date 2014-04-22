@@ -2,38 +2,57 @@
 // --------------------------
 final int SCREEN_WIDTH = 1366;
 final int SCREEN_HEIGHT = 768;
-final int NUMBER_OF_BEAMS = 20;
+final int NUMBER_OF_BEAMS = 50;
+final int MAX_ACTIVATION_TIME = 10001; // 10000 inclusive
+final float BEAM_TRANSPARENCY = 127.5;
 // --------------------------
 
 final color BLACK = color(0, 0, 0);
 
+Beam[] beams = new Beam[int(random(NUMBER_OF_BEAMS)) + 1];
 Beam[] mouseBeams = new Beam[4];
-Beam[] beams;
 boolean mouseBeamsActive = false;
+
+Class[] beamDirections = {
+  UpwardsBeam.class, DownwardsBeam.class, LeftwardsBeam.class, RightwardsBeam.class
+};
 
 void setup() {
   size(SCREEN_WIDTH, SCREEN_HEIGHT);
   noStroke();
-  beams = new Beam[int(random(NUMBER_OF_BEAMS)) + 1];
   for (int i = 0; i < beams.length; i++) {
-    int direction = int(random(Direction.values().length));
-    int distance = int(random(Distance.values().length));
-    beams[i] = new Beam(Direction.values()[direction], Distance.values()[distance], millis());
+    int randomDirection = int(random(beamDirections.length));
+    int randomDistance = int(random(Distance.values().length));
+
+    if (beamDirections[randomDirection] == UpwardsBeam.class) {
+      beams[i] = new UpwardsBeam(Distance.values()[randomDistance], millis());
+    } else if (beamDirections[randomDirection] == DownwardsBeam.class) {
+      beams[i] = new DownwardsBeam(Distance.values()[randomDistance], millis());
+    } else if (beamDirections[randomDirection] == LeftwardsBeam.class) {
+      beams[i] = new LeftwardsBeam(Distance.values()[randomDistance], millis());
+    } else if (beamDirections[randomDirection] == RightwardsBeam.class) {
+      beams[i] = new RightwardsBeam(Distance.values()[randomDistance], millis());
+    } else {
+      println("Error: Invalid direction. Aborting...");
+      exit();
+    }
   }
 }
 
 void draw() {
   background(BLACK);
+
   for (int i = 0; i < beams.length; i++) {
     if (beams[i].isActive()) {
       beams[i].move();
       beams[i].draw();
     } else {
-      beams[i].ready(millis());
+      if (beams[i].canActivate(millis())) beams[i].activate();
       if (beams[i].isActive()) beams[i].draw();
     }
   }
-  boolean allMouseBeamsInactive = true;
+
+  boolean allMouseBeamsInactive = true; // Hack for mouse press beams
   if (mouseBeamsActive) {
     for (int i = 0; i < mouseBeams.length; i++) {
       mouseBeams[i].move();
@@ -59,8 +78,12 @@ void mousePressed() {
   }
   beamColours.shuffle();
   mouseBeamsActive = true;
-  for (int i = 0; i < mouseBeams.length; i++) {
-    mouseBeams[i] = new Beam(Direction.values()[i], Distance.NEAR, beamColours.get(i), mouseX, mouseY);
-    mouseBeams[i].draw();
-  }
+  mouseBeams[0] = new UpwardsBeam(Distance.NEAR, mouseX, mouseY, beamColours.get(0));
+  mouseBeams[1] = new DownwardsBeam(Distance.NEAR, mouseX, mouseY, beamColours.get(1));
+  mouseBeams[2] = new LeftwardsBeam(Distance.NEAR, mouseX, mouseY, beamColours.get(2));
+  mouseBeams[3] = new RightwardsBeam(Distance.NEAR, mouseX, mouseY, beamColours.get(3));
+  mouseBeams[0].draw();
+  mouseBeams[1].draw();
+  mouseBeams[2].draw();
+  mouseBeams[3].draw();
 }
