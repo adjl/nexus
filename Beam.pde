@@ -16,6 +16,7 @@ class Beam {
   color colour;
   int timeCreated, startTime;
   boolean active;
+  int originX, originY;
 
   Beam(Direction direction, Distance distance, int timeCreated) {
     this.direction = direction;
@@ -33,6 +34,8 @@ class Beam {
     this.colour = COLOURS[colour];
     this.headX = headX;
     this.headY = headY;
+    originX = headX;
+    originY = headY;
     setHeadSizeAndSpeed(distance);
     setTailAndHaloAttributes();
     timeCreated = startTime = 0;
@@ -56,18 +59,20 @@ class Beam {
       println("Error: Invalid direction. Exiting...");
       exit();
     }
+    originX = headX;
+    originY = headY;
   }
 
   void setHeadSizeAndSpeed(Distance distance) {
     if (distance == Distance.NEAR) {
       headSize = 9;
-      speed = 5;
+      speed = 9;
     } else if (distance == Distance.MIDDLE) {
       headSize = 7;
-      speed = 4;
+      speed = 7;
     } else if (distance == Distance.FAR) {
       headSize = 5;
-      speed = 3;
+      speed = 5;
     } else {
       println("Error: Invalid distance. Exiting...");
       exit();
@@ -75,7 +80,6 @@ class Beam {
   }
 
   void setTailAndHaloAttributes() {
-    tailLength = headSize * 20;
     haloX = haloY = headSize / 2;
     haloSize = headSize * 1.5;
   }
@@ -130,6 +134,19 @@ class Beam {
     } else if (direction == Direction.LEFT) {
       translate(headX, headY + headSize);
       rotate(PI + HALF_PI);
+    } else {
+      println("Error: Invalid direction. Exiting...");
+      exit();
+    }
+
+    if (direction == Direction.UP) {
+      tailLength = min(originY - headY, headSize * 20);
+    } else if (direction == Direction.RIGHT) {
+      tailLength = min(headX - originX, headSize * 20);
+    } else if (direction == Direction.DOWN) {
+      tailLength = min(headY - originY, headSize * 20);
+    } else if (direction == Direction.LEFT) {
+      tailLength = min(originX - headX, headSize * 20);
     } else {
       println("Error: Invalid direction. Exiting...");
       exit();
