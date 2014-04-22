@@ -1,3 +1,3 @@
 enum Distance {
-  NEAR, MIDDLE, FAR
+  FAR, MIDDLE, NEAR
 };
