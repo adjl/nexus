@@ -2,8 +2,8 @@
 // --------------------------
 final int SCREEN_WIDTH = 1366;
 final int SCREEN_HEIGHT = 768;
-final int NUMBER_OF_BEAMS = 1000;
-final int MAX_ACTIVATION_TIME = 10001; // 10000 inclusive
+final int MAX_BEAMS = 100;
+final int MAX_FIRING_TIME = 20000;
 final float BEAM_TRANSPARENCY = 127.5;
 // --------------------------
 
@@ -14,12 +14,11 @@ void setup() {
   size(SCREEN_WIDTH, SCREEN_HEIGHT);
   noStroke();
   beams = new BeamGroup();
-  beams.setup();
 }
 
 void draw() {
   background(BLACK);
-  beams.draw();
+  beams.draw(millis());
 }
 
 void keyPressed() {
@@ -31,5 +30,5 @@ void keyPressed() {
 }
 
 void mousePressed() {
-  beams.mousePressed();
+  beams.mousePressed(mouseX, mouseY);
 }

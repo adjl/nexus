@@ -2,9 +2,9 @@ enum Distance {
 
   // Modify these as preferred:
   // --------------------------
-  FAR(5),
-  MIDDLE(7),
-  NEAR(9);
+  FAR(2),
+  MIDDLE(4),
+  NEAR(8);
   // --------------------------
 
   final int distance;

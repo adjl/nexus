@@ -10,9 +10,13 @@ class LeftwardsBeam extends Beam {
     super(distance, originX, originY, colour);
   }
 
-  void move() {
+  boolean isGone() {
+    return positionX + tailLength < 0;
+  }
+
+  Beam move() {
     positionX -= headSize;
-    if (positionX + tailLength < 0) active = false;
+    return this;
   }
 
   void draw() {

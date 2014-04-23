@@ -10,9 +10,13 @@ class RightwardsBeam extends Beam {
     super(distance, originX, originY, colour);
   }
 
-  void move() {
+  boolean isGone() {
+    return positionX - tailLength >= width;
+  }
+
+  Beam move() {
     positionX += headSize;
-    if (positionX - tailLength >= width) active = false;
+    return this;
   }
 
   void draw() {

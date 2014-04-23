@@ -10,9 +10,13 @@ class DownwardsBeam extends Beam {
     super(distance, originX, originY, colour);
   }
 
-  void move() {
+  boolean isGone() {
+    return positionY - tailLength >= height;
+  }
+
+  Beam move() {
     positionY += headSize;
-    if (positionY - tailLength >= height) active = false;
+    return this;
   }
 
   void draw() {

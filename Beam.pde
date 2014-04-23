@@ -6,25 +6,24 @@ abstract class Beam {
   final color yellow = color(255, 255, 0);
   final color[] colours = {red, green, blue, yellow};
 
-  int creationTime, activationTime;
+  int creationTime, firingTime;
   int headSize, tailLength;
   int originX, originY;
   int positionX, positionY;
-  int haloX, haloY;
-  float haloSize;
-  boolean active;
+  float haloX, haloY, haloSize;
+  boolean fired;
   color colour;
 
   Beam(Distance distance, int creationTime) {
     this.creationTime = creationTime;
-    activationTime = int(random(MAX_ACTIVATION_TIME));
+    firingTime = int(random(MAX_FIRING_TIME));
     headSize = distance.getDistance();
     tailLength = 0;
     originX = positionX = 0;
     originY = positionY = 0;
-    haloX = haloY = headSize / 2; // Why not 2.0, a float? Set as constant?
-    haloSize = headSize * 1.5; // Set as constant
-    active = false;
+    haloX = haloY = headSize / 2.0; // Set as constant?
+    haloSize = headSize * 1.5; // Set as constant?
+    fired = false;
     colour = colours[int(random(colours.length))];
   }
 
@@ -32,26 +31,28 @@ abstract class Beam {
     this.originX = positionX = originX;
     this.originY = positionY = originY;
     this.colour = colours[colour];
-    creationTime = activationTime = 0;
+    creationTime = firingTime = 0;
     headSize = distance.getDistance();
     tailLength = 0;
-    haloX = haloY = headSize / 2;
+    haloX = haloY = headSize / 2.0;
     haloSize = headSize * 1.5;
-    active = true;
+    fired = true;
   }
 
-  boolean isActive() {
-    return active;
+  Beam fire() {
+    fired = true;
+    return this;
   }
 
-  void activate() {
-    active = true;
+  boolean isFired() {
+    return fired;
   }
 
-  boolean canActivate(int currentTime) {
-    return currentTime - creationTime >= activationTime;
+  boolean canFire(int currentTime) {
+    return currentTime - creationTime >= firingTime;
   }
 
-  abstract void move();
+  abstract boolean isGone();
+  abstract Beam move();
   abstract void draw();
 }
