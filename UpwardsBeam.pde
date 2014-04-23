@@ -10,9 +10,13 @@ class UpwardsBeam extends Beam {
     super(distance, originX, originY, colour);
   }
 
-  void move() {
+  boolean isGone() {
+    return positionY + tailLength < 0;
+  }
+
+  Beam move() {
     positionY -= headSize; // Use speed variable (for readability)?
-    if (positionY + tailLength < 0) active = false; // Is this needed?
+    return this;
   }
 
   void draw() {

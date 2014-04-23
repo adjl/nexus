@@ -1,69 +1,72 @@
 class BeamGroup {
 
-  Beam[] beams = new Beam[int(random(NUMBER_OF_BEAMS)) + 1];
-  Beam[] mouseBeams = new Beam[4];
-  boolean mouseBeamsActive = false;
+  ArrayList<Beam> beams;
+  IntList colours;
 
-  Class[] beamDirections = {
-    UpwardsBeam.class, DownwardsBeam.class, LeftwardsBeam.class, RightwardsBeam.class
-  };
-
-  void setup() {
-    for (int i = 0; i < beams.length; i++) {
-      int randomDirection = int(random(beamDirections.length));
-      int randomDistance = int(random(Distance.values().length));
-
-      if (beamDirections[randomDirection] == UpwardsBeam.class) {
-        beams[i] = new UpwardsBeam(Distance.values()[randomDistance], millis());
-      } else if (beamDirections[randomDirection] == DownwardsBeam.class) {
-        beams[i] = new DownwardsBeam(Distance.values()[randomDistance], millis());
-      } else if (beamDirections[randomDirection] == LeftwardsBeam.class) {
-        beams[i] = new LeftwardsBeam(Distance.values()[randomDistance], millis());
-      } else if (beamDirections[randomDirection] == RightwardsBeam.class) {
-        beams[i] = new RightwardsBeam(Distance.values()[randomDistance], millis());
-      } else {
-        println("Error: Invalid direction. Aborting...");
-        exit();
-      }
+  BeamGroup() {
+    beams = new ArrayList<Beam>();
+    colours = new IntList();
+    for (int i = 0; i < 4; i++) { // See if there is a better way to do this
+      colours.append(i);
     }
   }
 
-  void draw() {
-    for (int i = 0; i < beams.length; i++) {
-      if (beams[i].isActive()) {
-        beams[i].move();
-        beams[i].draw();
-      } else {
-        if (beams[i].canActivate(millis())) beams[i].activate();
-        if (beams[i].isActive()) beams[i].draw();
+  void draw(int currentTime) {
+    int newBeams = int(random(MAX_BEAMS - beams.size()));
+    for (int i = 0; i < newBeams; i++) {
+      beams.add(newBeam(currentTime));
+    }
+    for (Beam beam : beams) {
+      if (beam.isFired()) {
+        beam.move().draw();
+      } else if (beam.canFire(currentTime)) {
+        beam.fire().draw();
       }
     }
-
-    boolean allMouseBeamsInactive = true; // Hack for mouse press beams
-    if (mouseBeamsActive) {
-      for (int i = 0; i < mouseBeams.length; i++) {
-        mouseBeams[i].move();
-        mouseBeams[i].draw();
-        if (mouseBeams[i].isActive()) allMouseBeamsInactive = false;
-      }
+    for (int i = beams.size() - 1; i >= 0; i--) {
+      if (beams.get(i).isGone()) beams.remove(i);
     }
-    if (allMouseBeamsInactive) mouseBeamsActive = false;
   }
 
-  void mousePressed() {
-    IntList beamColours = new IntList();
-    for (int i = 0; i < mouseBeams.length; i++) {
-      beamColours.append(i);
+  void mousePressed(int mouseX, int mouseY) {
+    Beam[] touchBeams = newTouchBeams(mouseX, mouseY);
+    for (int i = 0; i < touchBeams.length; i++) {
+      beams.add(touchBeams[i]);
     }
-    beamColours.shuffle();
-    mouseBeamsActive = true;
-    mouseBeams[0] = new UpwardsBeam(Distance.NEAR, mouseX, mouseY, beamColours.get(0));
-    mouseBeams[1] = new DownwardsBeam(Distance.NEAR, mouseX, mouseY, beamColours.get(1));
-    mouseBeams[2] = new LeftwardsBeam(Distance.NEAR, mouseX, mouseY, beamColours.get(2));
-    mouseBeams[3] = new RightwardsBeam(Distance.NEAR, mouseX, mouseY, beamColours.get(3));
-    mouseBeams[0].draw();
-    mouseBeams[1].draw();
-    mouseBeams[2].draw();
-    mouseBeams[3].draw();
+  }
+
+  Beam newBeam(int currentTime) {
+    Beam beam = null;
+    int direction = int(random(4));
+    switch (direction) {
+      case 0: // Upwards beam
+        beam = new UpwardsBeam(getRandomDistance(), currentTime);
+        break;
+      case 1: // Downwards beam
+        beam = new DownwardsBeam(getRandomDistance(), currentTime);
+        break;
+      case 2: // Leftwards beam
+        beam = new LeftwardsBeam(getRandomDistance(), currentTime);
+        break;
+      case 3: // Rightwards beam
+        beam = new RightwardsBeam(getRandomDistance(), currentTime);
+        break;
+    }
+    return beam;
+  }
+
+  Beam[] newTouchBeams(int mouseX, int mouseY) {
+    Distance distance = getRandomDistance();
+    colours.shuffle();
+    return new Beam[] {
+      new UpwardsBeam(distance, mouseX, mouseY, colours.get(0)),
+      new DownwardsBeam(distance, mouseX, mouseY, colours.get(1)),
+      new LeftwardsBeam(distance, mouseX, mouseY, colours.get(2)),
+      new RightwardsBeam(distance, mouseX, mouseY, colours.get(3))
+    };
+  }
+
+  Distance getRandomDistance() {
+    return Distance.values()[int(random(Distance.values().length))];
   }
 }
