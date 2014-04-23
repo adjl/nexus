@@ -1,5 +1,5 @@
 # Nexus
-A visualisation inspired by Android's Nexus Live Wallpaper.
+A Processing sketch inspired by Android's Nexus Live Wallpaper.
 
 ## Parameters
 Modify the following in [`Nexus.pde`](https://github.com/adeijosol/Nexus/raw/master/Nexus.pde) to your preferences:
