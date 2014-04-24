@@ -6,7 +6,7 @@ class BeamGroup {
   BeamGroup() {
     beams = new ArrayList<Beam>();
     colours = new IntList();
-    for (int i = 0; i < 4; i++) { // See if there is a better way to do this
+    for (int i = 0; i < 4; i++) {
       colours.append(i);
     }
   }
