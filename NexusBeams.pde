@@ -66,10 +66,10 @@ class NexusBeams {
     Distance distance = getRandomDistance();
     colours.shuffle();
     return new Beam[] {
-      new UpwardsBeam(distance, mouseX, mouseY, colours.get(0)),
-      new DownwardsBeam(distance, mouseX, mouseY, colours.get(1)),
-      new LeftwardsBeam(distance, mouseX, mouseY, colours.get(2)),
-      new RightwardsBeam(distance, mouseX, mouseY, colours.get(3))
+      new UpwardsBeam(distance, touchX, touchY, colours.get(0)),
+      new DownwardsBeam(distance, touchX, touchY, colours.get(1)),
+      new LeftwardsBeam(distance, touchX, touchY, colours.get(2)),
+      new RightwardsBeam(distance, touchX, touchY, colours.get(3))
     };
   }
 
