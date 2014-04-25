@@ -6,7 +6,7 @@ class UpwardsBeam extends Beam {
     originY = positionY = height - 1;
   }
 
-  UpwardsBeam(Distance distance, int originX, int originY, int colour) { // Do I need this explicit constructor?
+  UpwardsBeam(Distance distance, int originX, int originY, int colour) {
     super(distance, originX, originY, colour);
   }
 
