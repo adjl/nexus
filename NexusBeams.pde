@@ -1,9 +1,9 @@
-class BeamGroup {
+class NexusBeams {
 
   ArrayList<Beam> beams;
   IntList colours;
 
-  BeamGroup() {
+  NexusBeams() {
     beams = new ArrayList<Beam>();
     colours = new IntList();
     for (int i = 0; i < 4; i++) {
