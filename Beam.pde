@@ -6,17 +6,18 @@ abstract class Beam {
   final color yellow = color(255, 255, 0);
   final color[] colours = {red, green, blue, yellow};
 
-  int size, speed, tailLength;
+  int size, speed;
   int originX, originY;
   int positionX, positionY;
+  int length;
   color colour;
 
   Beam(Distance distance) {
     this.size = distance.getSize();
     this.speed = distance.getSpeed();
-    tailLength = 0;
     originX = positionX = 0;
     originY = positionY = 0;
+    length = 0;
     colour = colours[int(random(colours.length))];
   }
 
@@ -26,7 +27,7 @@ abstract class Beam {
     this.originX = positionX = originX;
     this.originY = positionY = originY;
     this.colour = colours[colour];
-    tailLength = 0;
+    length = 0;
   }
 
   abstract boolean isGone();

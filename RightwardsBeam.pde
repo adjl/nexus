@@ -11,12 +11,12 @@ class RightwardsBeam extends Beam {
   }
 
   boolean isGone() {
-    return positionX - tailLength * size >= width;
+    return positionX - length * size >= width;
   }
 
   void move() {
     positionX += speed;
-    tailLength = min((positionX - originX) / size + 1, 20);
+    length = min((positionX - originX) / size + 1, 20);
   }
 
   void draw() {
@@ -30,8 +30,8 @@ class RightwardsBeam extends Beam {
     vertex(0, 0);
     vertex(1, 0);
     fill(colour, 0);
-    vertex(1, tailLength);
-    vertex(0, tailLength);
+    vertex(1, length);
+    vertex(0, length);
     endShape(CLOSE);
     popMatrix();
   }
