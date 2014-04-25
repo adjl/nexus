@@ -14,8 +14,8 @@ class NexusBeams {
     }
   }
 
-  void update(int currentTime) { // TODO Improve
-    int newBeams = int(random(MAX_BEAMS - beams.size())); // TODO Where do I put this?
+  void update(int currentTime) {
+    int newBeams = int(random(MAX_BEAMS - beams.size())); // Where do I put this?
     for (int i = 0; i < newBeams; i++) {
       beams.add(newBeam(currentTime));
     }
@@ -46,16 +46,16 @@ class NexusBeams {
     Beam beam = null;
     int direction = int(random(NUMBER_OF_DIRECTIONS));
     switch (direction) {
-      case 0: // Upwards beam
+      case 0: // Up
         beam = new UpwardsBeam(getRandomDistance(), currentTime);
         break;
-      case 1: // Downwards beam
+      case 1: // Down
         beam = new DownwardsBeam(getRandomDistance(), currentTime);
         break;
-      case 2: // Leftwards beam
+      case 2: // Left
         beam = new LeftwardsBeam(getRandomDistance(), currentTime);
         break;
-      case 3: // Rightwards beam
+      case 3: // Right
         beam = new RightwardsBeam(getRandomDistance(), currentTime);
         break;
     }

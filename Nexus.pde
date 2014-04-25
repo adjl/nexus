@@ -2,9 +2,9 @@
 // --------------------------
 final int SCREEN_WIDTH = 1366;
 final int SCREEN_HEIGHT = 768;
-final int MAX_BEAMS = 100; // TODO Remove?
-final int MAX_FIRING_TIME = 20000; // TODO Increase?
-final float BEAM_TRANSPARENCY = 127.5; // TODO Change?
+final int MAX_BEAMS = 100; // Remove?
+final int MAX_FIRING_TIME = 20000; // Increase?
+final float BEAM_TRANSPARENCY = 127.5; // Change?
 // --------------------------
 
 final color BLACK = color(0, 0, 0);
@@ -37,5 +37,5 @@ void keyPressed() {
 }
 
 void mousePressed() {
-  beams.createTouchBeams(mouseX, mouseY); // TODO How does this behave when paused?
+  beams.createTouchBeams(mouseX, mouseY); // How does this behave when paused?
 }
