@@ -1,15 +1,12 @@
 class NexusBeams {
 
-  static final int NUMBER_OF_COLOURS = 4;
-  static final int NUMBER_OF_DIRECTIONS = 4;
-
   ArrayList<Beam> beams;
   IntList colours;
 
   NexusBeams() {
     beams = new ArrayList<Beam>();
     colours = new IntList();
-    for (int i = 0; i < NUMBER_OF_COLOURS; i++) {
+    for (int i = 0; i < 4; i++) { // Number of colours
       colours.append(i);
     }
   }
@@ -37,7 +34,7 @@ class NexusBeams {
 
   Beam newBeam() {
     Beam beam = null;
-    int direction = int(random(NUMBER_OF_DIRECTIONS));
+    int direction = int(random(4)); // Number of directions
     switch (direction) {
       case 0: // Up
         beam = new UpwardsBeam(getRandomDistance());
