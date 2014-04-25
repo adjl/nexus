@@ -2,18 +2,24 @@ enum Distance {
 
   // Modify these as preferred:
   // --------------------------
-  FAR(2),
-  MIDDLE(4),
-  NEAR(8);
+  FAR(2, 2),
+  MIDDLE(4, 4),
+  NEAR(8, 8);
   // --------------------------
 
-  final int distance;
+  final int size;
+  final int speed;
 
-  Distance(int distance) {
-    this.distance = distance;
+  Distance(int size, int speed) {
+    this.size = size;
+    this.speed = speed;
   }
 
-  int getDistance() {
-    return distance;
+  int getSize() {
+    return size;
+  }
+
+  int getSpeed() {
+    return speed;
   }
 }
