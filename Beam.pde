@@ -6,22 +6,17 @@ abstract class Beam {
   final color yellow = color(255, 255, 0);
   final color[] colours = {red, green, blue, yellow};
 
-  int creationTime, firingTime;
   int size, speed, tailLength;
   int originX, originY;
   int positionX, positionY;
-  boolean fired;
   color colour;
 
-  Beam(Distance distance, int creationTime) {
-    this.creationTime = creationTime;
+  Beam(Distance distance) {
     this.size = distance.getSize();
     this.speed = distance.getSpeed();
-    firingTime = int(random(MAX_FIRING_TIME));
     tailLength = 0;
     originX = positionX = 0;
     originY = positionY = 0;
-    fired = false;
     colour = colours[int(random(colours.length))];
   }
 
@@ -31,21 +26,7 @@ abstract class Beam {
     this.originX = positionX = originX;
     this.originY = positionY = originY;
     this.colour = colours[colour];
-    creationTime = firingTime = 0;
     tailLength = 0;
-    fired = true;
-  }
-
-  void fire() {
-    fired = true;
-  }
-
-  boolean isFired() {
-    return fired;
-  }
-
-  boolean canFire(int currentTime) {
-    return currentTime - creationTime >= firingTime;
   }
 
   abstract boolean isGone();

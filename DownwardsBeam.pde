@@ -1,7 +1,7 @@
 class DownwardsBeam extends Beam {
 
-  DownwardsBeam(Distance distance, int creationTime) {
-    super(distance, creationTime);
+  DownwardsBeam(Distance distance) {
+    super(distance);
     originX = positionX = int(random(width));
     originY = positionY = 0;
   }

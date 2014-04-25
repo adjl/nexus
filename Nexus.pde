@@ -2,8 +2,6 @@
 // --------------------------
 final int SCREEN_WIDTH = 1366;
 final int SCREEN_HEIGHT = 768;
-final int MAX_BEAMS = 100;
-final int MAX_FIRING_TIME = 20000;
 final float BEAM_TRANSPARENCY = 127.5;
 // --------------------------
 
@@ -21,8 +19,8 @@ void setup() {
 
 void draw() {
   background(BLACK);
-  if (isRunning) beams.update(millis());
-  beams.draw(millis());
+  if (isRunning) beams.update();
+  beams.draw();
 }
 
 void keyPressed() {
