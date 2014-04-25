@@ -11,22 +11,22 @@ class DownwardsBeam extends Beam {
   }
 
   boolean isGone() {
-    return positionY - tailLength >= height;
+    return positionY - tailLength * size >= height;
   }
 
   void move() {
     positionY += speed;
+    tailLength = min((positionY - originY) / size, 20);
   }
 
   void draw() {
-    tailLength = min(positionY - originY, headSize * 20);
     fill(colour, BEAM_TRANSPARENCY);
     pushMatrix();
-    translate(positionX + headSize, positionY + headSize);
+    translate(positionX + size * 0.5, positionY + size * 0.5);
     rotate(PI);
-    rect(0, 0, headSize, tailLength); // Tail
-    rect(0, 0, headSize, headSize); // Head
-    ellipse(haloX, haloY, haloSize, haloSize); // Halo
+    scale(size);
+    rect(0, 0, 1, tailLength); // Tail
+    ellipse(0.5, 0.5, 1.5, 1.5); // Halo
     popMatrix();
   }
 }

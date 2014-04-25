@@ -11,22 +11,22 @@ class LeftwardsBeam extends Beam {
   }
 
   boolean isGone() {
-    return positionX + tailLength < 0;
+    return positionX + tailLength * size < 0;
   }
 
   void move() {
     positionX -= speed;
+    tailLength = min((originX - positionX) / size, 20);
   }
 
   void draw() {
-    tailLength = min(originX - positionX, headSize * 20);
     fill(colour, BEAM_TRANSPARENCY);
     pushMatrix();
-    translate(positionX, positionY + headSize);
+    translate(positionX - size * 0.5, positionY + size * 0.5);
     rotate(PI + HALF_PI);
-    rect(0, 0, headSize, tailLength); // Tail
-    rect(0, 0, headSize, headSize); // Head
-    ellipse(haloX, haloY, haloSize, haloSize); // Halo
+    scale(size);
+    rect(0, 0, 1, tailLength); // Tail
+    ellipse(0.5, 0.5, 1.5, 1.5); // Halo
     popMatrix();
   }
 }

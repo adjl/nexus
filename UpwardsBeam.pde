@@ -11,21 +11,21 @@ class UpwardsBeam extends Beam {
   }
 
   boolean isGone() {
-    return positionY + tailLength < 0;
+    return positionY + tailLength * size < 0;
   }
 
   void move() {
     positionY -= speed;
+    tailLength = min((originY - positionY) / size, 20);
   }
 
   void draw() {
-    tailLength = min(originY - positionY, headSize * 20);
     fill(colour, BEAM_TRANSPARENCY);
     pushMatrix();
-    translate(positionX, positionY);
-    rect(0, 0, headSize, tailLength); // Tail
-    rect(0, 0, headSize, headSize); // Head
-    ellipse(haloX, haloY, haloSize, haloSize); // Halo
+    translate(positionX - size * 0.5, positionY - size * 0.5);
+    scale(size);
+    rect(0, 0, 1, tailLength); // Tail
+    ellipse(0.5, 0.5, 1.5, 1.5); // Halo
     popMatrix();
   }
 }
