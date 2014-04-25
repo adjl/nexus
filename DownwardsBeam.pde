@@ -15,7 +15,7 @@ class DownwardsBeam extends Beam {
   }
 
   void move() {
-    positionY += headSize;
+    positionY += speed;
   }
 
   void draw() {

@@ -15,7 +15,7 @@ class UpwardsBeam extends Beam {
   }
 
   void move() {
-    positionY -= headSize; // Use speed as variable name for readability?
+    positionY -= speed;
   }
 
   void draw() {
