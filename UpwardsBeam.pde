@@ -19,7 +19,7 @@ class UpwardsBeam extends Beam {
   }
 
   void draw() {
-    tailLength = min(originY - positionY, headSize * 20); // Can I rewrite this? Set tailLength as constant
+    tailLength = min(originY - positionY, headSize * 20);
     fill(colour, BEAM_TRANSPARENCY);
     pushMatrix();
     translate(positionX, positionY);
