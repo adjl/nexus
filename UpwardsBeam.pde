@@ -20,12 +20,17 @@ class UpwardsBeam extends Beam {
   }
 
   void draw() {
-    fill(colour, BEAM_TRANSPARENCY);
     pushMatrix();
     translate(positionX - size * 0.5, positionY - size * 0.5);
     scale(size);
-    rect(0, 0, 1, tailLength); // Tail
-    ellipse(0.5, 0.5, 1.5, 1.5); // Halo
+    beginShape(QUADS);
+    fill(colour, 255);
+    vertex(0, 0);
+    vertex(1, 0);
+    fill(colour, 0);
+    vertex(1, tailLength);
+    vertex(0, tailLength);
+    endShape(CLOSE);
     popMatrix();
   }
 }
