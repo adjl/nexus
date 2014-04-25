@@ -7,7 +7,7 @@ abstract class Beam {
   final color[] colours = {red, green, blue, yellow};
 
   int creationTime, firingTime;
-  int headSize, tailLength;
+  int speed, headSize, tailLength;
   int originX, originY;
   int positionX, positionY;
   float haloX, haloY, haloSize;
@@ -17,7 +17,7 @@ abstract class Beam {
   Beam(Distance distance, int creationTime) {
     this.creationTime = creationTime;
     firingTime = int(random(MAX_FIRING_TIME));
-    headSize = distance.getDistance();
+    speed = headSize = distance.getDistance();
     tailLength = 0;
     originX = positionX = 0;
     originY = positionY = 0;
@@ -32,7 +32,7 @@ abstract class Beam {
     this.originY = positionY = originY;
     this.colour = colours[colour];
     creationTime = firingTime = 0;
-    headSize = distance.getDistance();
+    speed = headSize = distance.getDistance();
     tailLength = 0;
     haloX = haloY = headSize / 2.0;
     haloSize = headSize * 1.5;

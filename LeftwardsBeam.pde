@@ -15,7 +15,7 @@ class LeftwardsBeam extends Beam {
   }
 
   void move() {
-    positionX -= headSize;
+    positionX -= speed;
   }
 
   void draw() {
