@@ -16,7 +16,7 @@ class UpwardsBeam extends Beam {
 
   void move() {
     positionY -= speed;
-    tailLength = min((originY - positionY) / size, 20);
+    tailLength = min((originY - positionY) / size + 1, 20);
   }
 
   void draw() {
