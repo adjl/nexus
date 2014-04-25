@@ -16,7 +16,7 @@ class LeftwardsBeam extends Beam {
 
   void move() {
     positionX -= speed;
-    tailLength = min((originX - positionX) / size, 20);
+    tailLength = min((originX - positionX) / size + 1, 20);
   }
 
   void draw() {
