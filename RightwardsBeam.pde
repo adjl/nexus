@@ -20,7 +20,6 @@ class RightwardsBeam extends Beam {
   }
 
   void draw() {
-    fill(colour, BEAM_TRANSPARENCY);
     pushMatrix();
     translate(positionX + size * 0.5, positionY - size * 0.5);
     rotate(HALF_PI);

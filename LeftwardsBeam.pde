@@ -20,7 +20,6 @@ class LeftwardsBeam extends Beam {
   }
 
   void draw() {
-    fill(colour, BEAM_TRANSPARENCY);
     pushMatrix();
     translate(positionX - size * 0.5, positionY + size * 0.5);
     rotate(PI + HALF_PI);
