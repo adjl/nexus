@@ -2,7 +2,7 @@ class UpwardsBeam extends Beam {
 
   UpwardsBeam(Distance distance, int creationTime) {
     super(distance, creationTime);
-    originX = positionX = int(random(width)); // Pass width and height as parameters
+    originX = positionX = int(random(width));
     originY = positionY = height - 1;
   }
 
