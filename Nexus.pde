@@ -8,12 +8,12 @@ final float BEAM_TRANSPARENCY = 127.5;
 // --------------------------
 
 final color BLACK = color(0, 0, 0);
-BeamGroup beams;
+NexusBeams beams;
 
 void setup() {
   size(SCREEN_WIDTH, SCREEN_HEIGHT);
   noStroke();
-  beams = new BeamGroup();
+  beams = new NexusBeams();
 }
 
 void draw() {
