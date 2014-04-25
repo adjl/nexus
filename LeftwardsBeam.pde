@@ -14,9 +14,8 @@ class LeftwardsBeam extends Beam {
     return positionX + tailLength < 0;
   }
 
-  Beam move() {
+  void move() {
     positionX -= headSize;
-    return this;
   }
 
   void draw() {

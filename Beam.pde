@@ -1,9 +1,11 @@
 abstract class Beam {
 
-  final color red = color(255, 0, 0); // Set 255 as constant
-  final color green = color(0, 255, 0);
-  final color blue = color(0, 0, 255);
-  final color yellow = color(255, 255, 0);
+  static final int MAX_COLOUR_VALUE = 255;
+
+  final color red = color(MAX_COLOUR_VALUE, 0, 0);
+  final color green = color(0, MAX_COLOUR_VALUE, 0);
+  final color blue = color(0, 0, MAX_COLOUR_VALUE);
+  final color yellow = color(MAX_COLOUR_VALUE, MAX_COLOUR_VALUE, 0);
   final color[] colours = {red, green, blue, yellow};
 
   int creationTime, firingTime;
@@ -39,9 +41,8 @@ abstract class Beam {
     fired = true;
   }
 
-  Beam fire() {
+  void fire() {
     fired = true;
-    return this;
   }
 
   boolean isFired() {
@@ -53,6 +54,6 @@ abstract class Beam {
   }
 
   abstract boolean isGone();
-  abstract Beam move();
+  abstract void move();
   abstract void draw();
 }

@@ -14,9 +14,8 @@ class RightwardsBeam extends Beam {
     return positionX - tailLength >= width;
   }
 
-  Beam move() {
+  void move() {
     positionX += headSize;
-    return this;
   }
 
   void draw() {
