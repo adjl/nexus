@@ -1,8 +1,5 @@
-// Modify these as preferred:
-// --------------------------
 final int SCREEN_WIDTH = 1366;
 final int SCREEN_HEIGHT = 768;
-// --------------------------
 
 final color BLACK = color(0, 0, 0);
 
