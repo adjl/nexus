@@ -11,7 +11,7 @@ NexusBeams beams;
 boolean isRunning;
 
 void setup() {
-  size(SCREEN_WIDTH, SCREEN_HEIGHT);
+  size(SCREEN_WIDTH, SCREEN_HEIGHT, P2D);
   noStroke();
   beams = new NexusBeams();
   isRunning = true;
