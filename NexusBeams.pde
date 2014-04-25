@@ -15,7 +15,7 @@ class NexusBeams {
   }
 
   void update(int currentTime) {
-    int newBeams = int(random(MAX_BEAMS - beams.size())); // Where do I put this?
+    int newBeams = int(random(MAX_BEAMS - beams.size()));
     for (int i = 0; i < newBeams; i++) {
       beams.add(newBeam(currentTime));
     }
