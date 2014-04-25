@@ -14,24 +14,17 @@ class NexusBeams {
     }
   }
 
-  void update(int currentTime) {
-    int newBeams = int(random(MAX_BEAMS - beams.size()));
-    for (int i = 0; i < newBeams; i++) {
-      beams.add(newBeam(currentTime));
-    }
+  void update() {
+    beams.add(newBeam());
     for (int i = beams.size() - 1; i >= 0; i--) {
-      if (beams.get(i).isFired()) {
-        beams.get(i).move();
-        if (beams.get(i).isGone()) beams.remove(i);
-      } else if (beams.get(i).canFire(currentTime)) {
-        beams.get(i).fire();
-      }
+      beams.get(i).move();
+      if (beams.get(i).isGone()) beams.remove(i);
     }
   }
 
-  void draw(int currentTime) {
+  void draw() {
     for (Beam beam : beams) {
-      if (beam.isFired()) beam.draw();
+      beam.draw();
     }
   }
 
@@ -42,21 +35,21 @@ class NexusBeams {
     }
   }
 
-  Beam newBeam(int currentTime) {
+  Beam newBeam() {
     Beam beam = null;
     int direction = int(random(NUMBER_OF_DIRECTIONS));
     switch (direction) {
       case 0: // Up
-        beam = new UpwardsBeam(getRandomDistance(), currentTime);
+        beam = new UpwardsBeam(getRandomDistance());
         break;
       case 1: // Down
-        beam = new DownwardsBeam(getRandomDistance(), currentTime);
+        beam = new DownwardsBeam(getRandomDistance());
         break;
       case 2: // Left
-        beam = new LeftwardsBeam(getRandomDistance(), currentTime);
+        beam = new LeftwardsBeam(getRandomDistance());
         break;
       case 3: // Right
-        beam = new RightwardsBeam(getRandomDistance(), currentTime);
+        beam = new RightwardsBeam(getRandomDistance());
         break;
     }
     return beam;

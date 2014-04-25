@@ -1,7 +1,7 @@
 class RightwardsBeam extends Beam {
 
-  RightwardsBeam(Distance distance, int creationTime) {
-    super(distance, creationTime);
+  RightwardsBeam(Distance distance) {
+    super(distance);
     originX = positionX = 0;
     originY = positionY = int(random(height));
   }

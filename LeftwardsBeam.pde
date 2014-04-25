@@ -1,7 +1,7 @@
 class LeftwardsBeam extends Beam {
 
-  LeftwardsBeam(Distance distance, int creationTime) {
-    super(distance, creationTime);
+  LeftwardsBeam(Distance distance) {
+    super(distance);
     originX = positionX = width - 1;
     originY = positionY = int(random(height));
   }
