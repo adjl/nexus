@@ -1,11 +1,9 @@
 abstract class Beam {
 
-  static final int MAX_COLOUR_VALUE = 255;
-
-  final color red = color(MAX_COLOUR_VALUE, 0, 0);
-  final color green = color(0, MAX_COLOUR_VALUE, 0);
-  final color blue = color(0, 0, MAX_COLOUR_VALUE);
-  final color yellow = color(MAX_COLOUR_VALUE, MAX_COLOUR_VALUE, 0);
+  final color red = color(255, 0, 0);
+  final color green = color(0, 255, 0);
+  final color blue = color(0, 0, 255);
+  final color yellow = color(255, 255, 0);
   final color[] colours = {red, green, blue, yellow};
 
   int creationTime, firingTime;
@@ -23,8 +21,8 @@ abstract class Beam {
     tailLength = 0;
     originX = positionX = 0;
     originY = positionY = 0;
-    haloX = haloY = headSize / 2.0; // Set as constant?
-    haloSize = headSize * 1.5; // Set as constant?
+    haloX = haloY = headSize / 2.0;
+    haloSize = headSize * 1.5;
     fired = false;
     colour = colours[int(random(colours.length))];
   }
