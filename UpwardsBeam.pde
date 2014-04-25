@@ -2,7 +2,7 @@ class UpwardsBeam extends Beam {
 
   UpwardsBeam(Distance distance, int creationTime) {
     super(distance, creationTime);
-    originX = positionX = int(random(width));
+    originX = positionX = int(random(width)); // Pass width and height as parameters
     originY = positionY = height - 1;
   }
 
@@ -14,9 +14,8 @@ class UpwardsBeam extends Beam {
     return positionY + tailLength < 0;
   }
 
-  Beam move() {
-    positionY -= headSize; // Use speed variable (for readability)?
-    return this;
+  void move() {
+    positionY -= headSize; // Use speed as variable name for readability?
   }
 
   void draw() {

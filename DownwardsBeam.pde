@@ -14,9 +14,8 @@ class DownwardsBeam extends Beam {
     return positionY - tailLength >= height;
   }
 
-  Beam move() {
+  void move() {
     positionY += headSize;
-    return this;
   }
 
   void draw() {

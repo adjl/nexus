@@ -1,35 +1,42 @@
 class NexusBeams {
 
+  static final int NUMBER_OF_COLOURS = 4;
+  static final int NUMBER_OF_DIRECTIONS = 4;
+
   ArrayList<Beam> beams;
   IntList colours;
 
   NexusBeams() {
     beams = new ArrayList<Beam>();
     colours = new IntList();
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < NUMBER_OF_COLOURS; i++) {
       colours.append(i);
     }
   }
 
-  void draw(int currentTime) {
-    int newBeams = int(random(MAX_BEAMS - beams.size()));
+  void update(int currentTime) { // TODO Improve
+    int newBeams = int(random(MAX_BEAMS - beams.size())); // TODO Where do I put this?
     for (int i = 0; i < newBeams; i++) {
       beams.add(newBeam(currentTime));
     }
-    for (Beam beam : beams) {
-      if (beam.isFired()) {
-        beam.move().draw();
-      } else if (beam.canFire(currentTime)) {
-        beam.fire().draw();
-      }
-    }
     for (int i = beams.size() - 1; i >= 0; i--) {
-      if (beams.get(i).isGone()) beams.remove(i);
+      if (beams.get(i).isFired()) {
+        beams.get(i).move();
+        if (beams.get(i).isGone()) beams.remove(i);
+      } else if (beams.get(i).canFire(currentTime)) {
+        beams.get(i).fire();
+      }
     }
   }
 
-  void mousePressed(int mouseX, int mouseY) {
-    Beam[] touchBeams = newTouchBeams(mouseX, mouseY);
+  void draw(int currentTime) {
+    for (Beam beam : beams) {
+      if (beam.isFired()) beam.draw();
+    }
+  }
+
+  void createTouchBeams(int touchX, int touchY) {
+    Beam[] touchBeams = newTouchBeams(touchX, touchY);
     for (int i = 0; i < touchBeams.length; i++) {
       beams.add(touchBeams[i]);
     }
@@ -37,7 +44,7 @@ class NexusBeams {
 
   Beam newBeam(int currentTime) {
     Beam beam = null;
-    int direction = int(random(4));
+    int direction = int(random(NUMBER_OF_DIRECTIONS));
     switch (direction) {
       case 0: // Upwards beam
         beam = new UpwardsBeam(getRandomDistance(), currentTime);
@@ -55,7 +62,7 @@ class NexusBeams {
     return beam;
   }
 
-  Beam[] newTouchBeams(int mouseX, int mouseY) {
+  Beam[] newTouchBeams(int touchX, int touchY) {
     Distance distance = getRandomDistance();
     colours.shuffle();
     return new Beam[] {
