@@ -18,7 +18,7 @@ abstract class Beam {
   Beam(Distance distance) {
     this.size = distance.getSize();
     this.speed = distance.getSpeed();
-    this.transparency = distance.getTransparency() * 255;
+    this.transparency = distance.getOpacity() * 255;
     originX = positionX = 0;
     originY = positionY = 0;
     length = 0;
@@ -29,7 +29,7 @@ abstract class Beam {
   Beam(Distance distance, int originX, int originY, int colour) {
     this.size = distance.getSize();
     this.speed = distance.getSpeed();
-    this.transparency = distance.getTransparency() * 255;
+    this.transparency = distance.getOpacity() * 255;
     this.originX = positionX = originX;
     this.originY = positionY = originY;
     this.colour = colours[colour];
