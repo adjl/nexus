@@ -1,7 +1,7 @@
 abstract class Beam {
 
-  final int maxLength = 20;
-  final float headTransparency = 255;
+  final int maxLength = 25;
+  final float headTransparency = 216.75; // 85%
   final color red = color(255, 0, 0);
   final color green = color(0, 255, 0);
   final color blue = color(0, 0, 255);
