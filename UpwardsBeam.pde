@@ -20,6 +20,7 @@ class UpwardsBeam extends Beam {
   }
 
   void draw() {
+    float tailTransparency = map(20 - length, 0, 20, 0, 255);
     pushMatrix();
     translate(positionX - size * 0.5, positionY - size * 0.5);
     scale(size);
@@ -27,7 +28,7 @@ class UpwardsBeam extends Beam {
     fill(colour, 255);
     vertex(0, 0);
     vertex(1, 0);
-    fill(colour, 0);
+    fill(colour, tailTransparency);
     vertex(1, length);
     vertex(0, length);
     endShape(CLOSE);
