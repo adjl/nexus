@@ -16,17 +16,17 @@ class LeftwardsBeam extends Beam {
 
   void move() {
     positionX -= speed;
-    length = min((originX - positionX) / size + 1, 20);
+    length = min((originX - positionX) / size + 1, maxLength);
   }
 
   void draw() {
-    float tailTransparency = map(20 - length, 0, 20, 0, 255);
+    float tailTransparency = map(maxLength - length, 0, maxLength, 0, headTransparency);
     pushMatrix();
     translate(positionX - size * 0.5, positionY + size * 0.5);
     rotate(PI + HALF_PI);
     scale(size);
     beginShape(QUADS);
-    fill(colour, 255);
+    fill(colour, headTransparency);
     vertex(0, 0);
     vertex(1, 0);
     fill(colour, tailTransparency);
