@@ -1,8 +1,8 @@
 enum Distance {
 
   FAR(2, 2),
-  MIDDLE(4, 4),
-  NEAR(8, 8);
+  MIDDLE(5, 5),
+  NEAR(9, 9);
 
   final int size;
   final int speed;
