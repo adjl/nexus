@@ -4,10 +4,12 @@ class RightwardsBeam extends Beam {
     super(distance);
     originX = positionX = 0;
     originY = positionY = int(random(height));
+    angle = HALF_PI;
   }
 
   RightwardsBeam(Distance distance, int originX, int originY, int colour) {
     super(distance, originX, originY, colour);
+    angle = HALF_PI;
   }
 
   boolean isGone() {
@@ -20,19 +22,6 @@ class RightwardsBeam extends Beam {
   }
 
   void draw() {
-    float tailTransparency = map(maxLength - length, 0, maxLength, 0, headTransparency);
-    pushMatrix();
-    translate(positionX + size * 0.5, positionY - size * 0.5);
-    rotate(HALF_PI);
-    scale(size);
-    beginShape(QUADS);
-    fill(colour, headTransparency);
-    vertex(0, 0);
-    vertex(1, 0);
-    fill(colour, tailTransparency);
-    vertex(1, length);
-    vertex(0, length);
-    endShape(CLOSE);
-    popMatrix();
+    super.drawBeam(positionX + size * 0.5, positionY - size * 0.5);
   }
 }

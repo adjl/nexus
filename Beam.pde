@@ -12,6 +12,7 @@ abstract class Beam {
   int originX, originY;
   int positionX, positionY;
   int length;
+  float angle;
   color colour;
 
   Beam(Distance distance) {
@@ -20,6 +21,7 @@ abstract class Beam {
     originX = positionX = 0;
     originY = positionY = 0;
     length = 0;
+    angle = 0;
     colour = colours[int(random(colours.length))];
   }
 
@@ -30,6 +32,24 @@ abstract class Beam {
     this.originY = positionY = originY;
     this.colour = colours[colour];
     length = 0;
+    angle = 0;
+  }
+
+  void drawBeam(float positionX, float positionY) {
+    float tailTransparency = map(maxLength - length, 0, maxLength, 0, headTransparency);
+    pushMatrix();
+    translate(positionX, positionY);
+    rotate(angle);
+    scale(size);
+    beginShape(QUADS);
+    fill(colour, headTransparency);
+    vertex(0, 0);
+    vertex(1, 0);
+    fill(colour, tailTransparency);
+    vertex(1, length);
+    vertex(0, length);
+    endShape(CLOSE);
+    popMatrix();
   }
 
   abstract boolean isGone();
