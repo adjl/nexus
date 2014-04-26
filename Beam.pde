@@ -1,7 +1,6 @@
 abstract class Beam {
 
   final int maxLength = 25;
-  final float headTransparency = 216.75; // 85%
   final color red = color(255, 0, 0);
   final color green = color(0, 255, 0);
   final color blue = color(0, 0, 255);
@@ -9,6 +8,7 @@ abstract class Beam {
   final color[] colours = {red, green, blue, yellow};
 
   int size, speed;
+  float transparency;
   int originX, originY;
   int positionX, positionY;
   int length;
@@ -18,6 +18,7 @@ abstract class Beam {
   Beam(Distance distance) {
     this.size = distance.getSize();
     this.speed = distance.getSpeed();
+    this.transparency = distance.getTransparency() * 255;
     originX = positionX = 0;
     originY = positionY = 0;
     length = 0;
@@ -28,6 +29,7 @@ abstract class Beam {
   Beam(Distance distance, int originX, int originY, int colour) {
     this.size = distance.getSize();
     this.speed = distance.getSpeed();
+    this.transparency = distance.getTransparency() * 255;
     this.originX = positionX = originX;
     this.originY = positionY = originY;
     this.colour = colours[colour];
@@ -36,13 +38,13 @@ abstract class Beam {
   }
 
   void drawBeam(float positionX, float positionY) {
-    float tailTransparency = map(maxLength - length, 0, maxLength, 0, headTransparency);
+    float tailTransparency = map(maxLength - length, 0, maxLength, 0, transparency);
     pushMatrix();
     translate(positionX, positionY);
     rotate(angle);
     scale(size);
     beginShape(QUADS);
-    fill(colour, headTransparency);
+    fill(colour, transparency);
     vertex(0, 0);
     vertex(1, 0);
     fill(colour, tailTransparency);
