@@ -50,6 +50,12 @@ abstract class Beam {
     fill(colour, tailTransparency);
     vertex(1, length);
     vertex(0, length);
+    fill(colour, transparency * 2);
+    vertex(0, 0);
+    vertex(1, 0);
+    fill(colour, 0);
+    vertex(1, 1);
+    vertex(0, 1);
     endShape(CLOSE);
     popMatrix();
   }
