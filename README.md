@@ -18,6 +18,8 @@ There are a number of settings you can change to your tastes (and to obtain inte
 - [`Nexus.pde`](https://github.com/adeijosol/Nexus/raw/master/Nexus.pde)
   - `screenWidth` (default: 1366)
   - `screenHeight` (default: 768)
+- [`NexusBeams.pde`](https://github.com/adeijosol/Nexus/raw/master/NexusBeams.pde)
+  - `chanceOfFiring` (default: 20)
 - [`Beam.pde`](https://github.com/adeijosol/Nexus/raw/master/Beam.pde)
   - `maxLength` (default: 25)
   - `colours` (default: red, green, blue, yellow)
