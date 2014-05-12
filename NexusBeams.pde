@@ -14,7 +14,9 @@ class NexusBeams {
   }
 
   void update() {
-    if (int(random(chanceOfFiring)) == 0) beams.add(newBeam());
+    if (int(random(chanceOfFiring)) == 0) {
+      beams.add(newBeam());
+    }
     for (int i = beams.size() - 1; i >= 0; i--) {
       beams.get(i).move();
       if (beams.get(i).isGone()) beams.remove(i);
