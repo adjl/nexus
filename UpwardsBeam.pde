@@ -2,9 +2,8 @@ class UpwardsBeam extends Beam {
 
   UpwardsBeam(Distance distance) {
     super(distance);
-    position = new PVector(int(random(width)), height - 1);
-    originX = position.x;
-    originY = position.y;
+    origin = new PVector(int(random(width)), height - 1);
+    position = new PVector(origin.x, origin.y);
   }
 
   UpwardsBeam(Distance distance, float originX, float originY, int colour) {
@@ -17,7 +16,7 @@ class UpwardsBeam extends Beam {
 
   void move() {
     position.y -= speed;
-    length = min((originY - position.y) / size + 1, maxLength);
+    length = min((origin.y - position.y) / size + 1, maxLength);
   }
 
   void draw() {
