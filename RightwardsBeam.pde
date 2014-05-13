@@ -2,9 +2,8 @@ class RightwardsBeam extends Beam {
 
   RightwardsBeam(Distance distance) {
     super(distance);
-    position = new PVector(0, int(random(height)));
-    originX = position.x;
-    originY = position.y;
+    origin = new PVector(0, int(random(height)));
+    position = new PVector(origin.x, origin.y);
     angle = HALF_PI;
   }
 
@@ -19,7 +18,7 @@ class RightwardsBeam extends Beam {
 
   void move() {
     position.x += speed;
-    length = min((position.x - originX) / size + 1, maxLength);
+    length = min((position.x - origin.x) / size + 1, maxLength);
   }
 
   void draw() {

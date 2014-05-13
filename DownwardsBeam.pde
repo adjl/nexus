@@ -2,9 +2,8 @@ class DownwardsBeam extends Beam {
 
   DownwardsBeam(Distance distance) {
     super(distance);
-    position = new PVector(int(random(width)), 0);
-    originX = position.x;
-    originY = position.y;
+    origin = new PVector(int(random(width)), 0);
+    position = new PVector(origin.x, origin.y);
     angle = PI;
   }
 
@@ -19,7 +18,7 @@ class DownwardsBeam extends Beam {
 
   void move() {
     position.y += speed;
-    length = min((position.y - originY) / size + 1, maxLength);
+    length = min((position.y - origin.y) / size + 1, maxLength);
   }
 
   void draw() {
