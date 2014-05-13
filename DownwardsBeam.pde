@@ -2,26 +2,27 @@ class DownwardsBeam extends Beam {
 
   DownwardsBeam(Distance distance) {
     super(distance);
-    originX = positionX = int(random(width));
-    originY = positionY = 0;
+    position = new PVector(int(random(width)), 0);
+    originX = position.x;
+    originY = position.y;
     angle = PI;
   }
 
-  DownwardsBeam(Distance distance, int originX, int originY, int colour) {
+  DownwardsBeam(Distance distance, float originX, float originY, int colour) {
     super(distance, originX, originY, colour);
     angle = PI;
   }
 
   boolean isGone() {
-    return positionY - length * size >= height;
+    return position.y - length * size >= height;
   }
 
   void move() {
-    positionY += speed;
-    length = min((positionY - originY) / size + 1, maxLength);
+    position.y += speed;
+    length = min((position.y - originY) / size + 1, maxLength);
   }
 
   void draw() {
-    super.drawBeam(positionX + size * 0.5, positionY + size * 0.5);
+    drawBeam(position.x + size * 0.5, position.y + size * 0.5);
   }
 }
