@@ -12,16 +12,16 @@ abstract class Beam {
   color colour;
 
   Beam(BeamType beamType) {
-    opacity = beamType.getOpacity();
-    size = beamType.getSize();
+    opacity = beamType.opacity();
+    size = beamType.size();
     colour = colours[int(random(colours.length))];
   }
 
   Beam(BeamType beamType, float originX, float originY, int colourID) {
     origin = new PVector(originX, originY);
     position = new PVector(originX, originY);
-    opacity = beamType.getOpacity();
-    size = beamType.getSize();
+    opacity = beamType.opacity();
+    size = beamType.size();
     colour = colours[colourID];
   }
 
