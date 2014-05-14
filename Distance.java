@@ -5,12 +5,12 @@ enum Distance {
   NEAR(9, 3, 0.5f);
 
   final int size;
-  final int speed;
+  final int velocity;
   final float opacity;
 
-  Distance(int size, int speed, float opacity) {
+  Distance(int size, int velocity, float opacity) {
     this.size = size;
-    this.speed = speed;
+    this.velocity = velocity;
     this.opacity = opacity;
   }
 
@@ -18,8 +18,8 @@ enum Distance {
     return size;
   }
 
-  int getSpeed() {
-    return speed;
+  int getVelocity() {
+    return velocity;
   }
 
   float getOpacity() {
