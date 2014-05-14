@@ -8,8 +8,8 @@ class UpwardsBeam extends Beam {
     angle = 0;
   }
 
-  UpwardsBeam(Distance distance, float originX, float originY, int colour) {
-    super(distance, originX, originY, colour);
+  UpwardsBeam(Distance distance, float originX, float originY, int colourID) {
+    super(distance, originX, originY, colourID);
     velocity = new PVector(0, -distance.getVelocity());
     angle = 0;
   }
