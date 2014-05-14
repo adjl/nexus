@@ -4,18 +4,18 @@ enum BeamType {
   MIDDLE(2f, 0.5f, 7f),
   NEAR(3f, 0.5f, 9f);
 
-  final float velocity;
+  final float acceleration;
   final float opacity;
   final float size;
 
-  BeamType(float velocity, float opacity, float size) {
-    this.velocity = velocity;
+  BeamType(float acceleration, float opacity, float size) {
+    this.acceleration = acceleration;
     this.opacity = opacity * 255;
     this.size = size;
   }
 
-  float getVelocity() {
-    return velocity;
+  float getAcceleration() {
+    return acceleration;
   }
 
   float getOpacity() {
