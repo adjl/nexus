@@ -1,7 +1,5 @@
 class DownwardsBeam extends Beam {
 
-  PVector velocity;
-
   DownwardsBeam(Distance distance) {
     super(distance);
     origin = new PVector(int(random(width)), 0);
