@@ -1,25 +1,29 @@
 class UpwardsBeam extends Beam {
 
-  UpwardsBeam(Distance distance) {
-    super(distance);
-    originX = positionX = int(random(width));
-    originY = positionY = height - 1;
+  UpwardsBeam(BeamType beamType) {
+    super(beamType);
+    origin = new PVector(int(random(width)), height - 1);
+    position = new PVector(origin.x, origin.y);
+    velocity = new PVector(0, -beamType.getVelocity());
+    angle = 0;
   }
 
-  UpwardsBeam(Distance distance, int originX, int originY, int colour) {
-    super(distance, originX, originY, colour);
+  UpwardsBeam(BeamType beamType, float originX, float originY, int colourID) {
+    super(beamType, originX, originY, colourID);
+    velocity = new PVector(0, -beamType.getVelocity());
+    angle = 0;
   }
 
   boolean isGone() {
-    return positionY + length * size < 0;
+    return position.y + length * size < 0;
   }
 
   void move() {
-    positionY -= speed;
-    length = min((originY - positionY) / size + 1, maxLength);
+    position.add(velocity);
+    length = min((origin.y - position.y) / size + 1, maxLength);
   }
 
   void draw() {
-    super.drawBeam(positionX - size * 0.5, positionY - size * 0.5);
+    drawBeam(position.x - size * 0.5, position.y - size * 0.5);
   }
 }

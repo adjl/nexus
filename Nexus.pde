@@ -1,12 +1,12 @@
-final int screenWidth = 1366;
-final int screenHeight = 768;
+final int width = 1366;
+final int height = 768;
 final color black = color(0, 0, 0);
 
 NexusBeams beams;
 boolean isRunning;
 
 void setup() {
-  size(screenWidth, screenHeight, P2D);
+  size(width, height, P2D);
   noStroke();
   beams = new NexusBeams();
   isRunning = true;
