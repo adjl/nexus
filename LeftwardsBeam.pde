@@ -1,16 +1,16 @@
 class LeftwardsBeam extends Beam {
 
-  LeftwardsBeam(Distance distance) {
-    super(distance);
+  LeftwardsBeam(BeamType beamType) {
+    super(beamType);
     origin = new PVector(width - 1, int(random(height)));
     position = new PVector(origin.x, origin.y);
-    velocity = new PVector(-distance.getVelocity(), 0);
+    velocity = new PVector(-beamType.getVelocity(), 0);
     angle = PI + HALF_PI;
   }
 
-  LeftwardsBeam(Distance distance, float originX, float originY, int colourID) {
-    super(distance, originX, originY, colourID);
-    velocity = new PVector(-distance.getVelocity(), 0);
+  LeftwardsBeam(BeamType beamType, float originX, float originY, int colourID) {
+    super(beamType, originX, originY, colourID);
+    velocity = new PVector(-beamType.getVelocity(), 0);
     angle = PI + HALF_PI;
   }
 
