@@ -28,7 +28,7 @@ abstract class Beam {
   void drawBeam(float positionX, float positionY) {
     float tailOpacity = map(maxLength - length, 0, maxLength, 0, opacity);
     pushMatrix();
-    translate(positionX, positionY);
+    translate(floor(positionX), floor(positionY));
     rotate(angle);
     scale(size);
     beginShape(QUADS);
