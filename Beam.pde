@@ -7,11 +7,12 @@ abstract class Beam {
   final color yellow = color(255, 255, 0);
   final color[] colours = {red, green, blue, yellow};
 
-  PVector origin, position, velocity;
+  PVector origin, position, velocity, acceleration;
   float angle, length, opacity, size;
   color colour;
 
   Beam(BeamType beamType) {
+    velocity = new PVector();
     opacity = beamType.getOpacity();
     size = beamType.getSize();
     colour = colours[int(random(colours.length))];
@@ -20,6 +21,7 @@ abstract class Beam {
   Beam(BeamType beamType, float originX, float originY, int colourID) {
     origin = new PVector(originX, originY);
     position = new PVector(originX, originY);
+    velocity = new PVector();
     opacity = beamType.getOpacity();
     size = beamType.getSize();
     colour = colours[colourID];
