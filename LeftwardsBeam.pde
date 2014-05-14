@@ -1,14 +1,18 @@
 class LeftwardsBeam extends Beam {
 
+  PVector velocity;
+
   LeftwardsBeam(Distance distance) {
     super(distance);
     origin = new PVector(width - 1, int(random(height)));
     position = new PVector(origin.x, origin.y);
+    velocity = new PVector(-distance.getVelocity(), 0);
     angle = PI + HALF_PI;
   }
 
   LeftwardsBeam(Distance distance, float originX, float originY, int colour) {
     super(distance, originX, originY, colour);
+    velocity = new PVector(-distance.getVelocity(), 0);
     angle = PI + HALF_PI;
   }
 
@@ -17,7 +21,7 @@ class LeftwardsBeam extends Beam {
   }
 
   void move() {
-    position.x -= speed;
+    position.add(velocity);
     length = min((origin.x - position.x) / size + 1, maxLength);
   }
 
