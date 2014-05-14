@@ -1,4 +1,4 @@
-enum Distance {
+enum BeamType {
 
   FAR(5, 1, 0.5f),
   MIDDLE(7, 2, 0.5f),
@@ -8,7 +8,7 @@ enum Distance {
   final int velocity;
   final float transparency;
 
-  Distance(int size, int velocity, float transparency) {
+  BeamType(int size, int velocity, float transparency) {
     this.size = size;
     this.velocity = velocity;
     this.transparency = transparency * 255;

@@ -1,16 +1,16 @@
 class RightwardsBeam extends Beam {
 
-  RightwardsBeam(Distance distance) {
-    super(distance);
+  RightwardsBeam(BeamType beamType) {
+    super(beamType);
     origin = new PVector(0, int(random(height)));
     position = new PVector(origin.x, origin.y);
-    velocity = new PVector(distance.getVelocity(), 0);
+    velocity = new PVector(beamType.getVelocity(), 0);
     angle = HALF_PI;
   }
 
-  RightwardsBeam(Distance distance, float originX, float originY, int colourID) {
-    super(distance, originX, originY, colourID);
-    velocity = new PVector(distance.getVelocity(), 0);
+  RightwardsBeam(BeamType beamType, float originX, float originY, int colourID) {
+    super(beamType, originX, originY, colourID);
+    velocity = new PVector(beamType.getVelocity(), 0);
     angle = HALF_PI;
   }
 

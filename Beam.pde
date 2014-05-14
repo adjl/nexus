@@ -12,17 +12,17 @@ abstract class Beam {
   int size;
   color colour;
 
-  Beam(Distance distance) {
-    transparency = distance.getTransparency();
-    size = distance.getSize();
+  Beam(BeamType beamType) {
+    transparency = beamType.getTransparency();
+    size = beamType.getSize();
     colour = colours[int(random(colours.length))];
   }
 
-  Beam(Distance distance, float originX, float originY, int colourID) {
+  Beam(BeamType beamType, float originX, float originY, int colourID) {
     origin = new PVector(originX, originY);
     position = new PVector(originX, originY);
-    transparency = distance.getTransparency();
-    size = distance.getSize();
+    transparency = beamType.getTransparency();
+    size = beamType.getSize();
     colour = colours[colourID];
   }
 
