@@ -8,11 +8,11 @@ abstract class Beam {
   final color[] colours = {red, green, blue, yellow};
 
   PVector origin, position, velocity;
-  float angle, length, transparency, size;
+  float angle, length, opacity, size;
   color colour;
 
   Beam(BeamType beamType) {
-    transparency = beamType.getTransparency();
+    opacity = beamType.getOpacity();
     size = beamType.getSize();
     colour = colours[int(random(colours.length))];
   }
@@ -20,25 +20,25 @@ abstract class Beam {
   Beam(BeamType beamType, float originX, float originY, int colourID) {
     origin = new PVector(originX, originY);
     position = new PVector(originX, originY);
-    transparency = beamType.getTransparency();
+    opacity = beamType.getOpacity();
     size = beamType.getSize();
     colour = colours[colourID];
   }
 
   void drawBeam(float positionX, float positionY) {
-    float tailTransparency = map(maxLength - length, 0, maxLength, 0, transparency);
+    float tailOpacity = map(maxLength - length, 0, maxLength, 0, opacity);
     pushMatrix();
     translate(position.x, position.y);
     rotate(angle);
     scale(size);
     beginShape(QUADS);
-    fill(colour, transparency); // Body
+    fill(colour, opacity); // Body
     vertex(0, 0);
     vertex(1, 0);
-    fill(colour, tailTransparency); // Tail
+    fill(colour, tailOpacity); // Tail
     vertex(1, length);
     vertex(0, length);
-    fill(colour, transparency * 2); // Head
+    fill(colour, opacity * 2); // Head
     vertex(0, 0);
     vertex(1, 0);
     fill(colour, 0);
