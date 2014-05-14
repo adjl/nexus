@@ -1,7 +1,5 @@
 class LeftwardsBeam extends Beam {
 
-  PVector velocity;
-
   LeftwardsBeam(Distance distance) {
     super(distance);
     origin = new PVector(width - 1, int(random(height)));

@@ -1,7 +1,5 @@
 class RightwardsBeam extends Beam {
 
-  PVector velocity;
-
   RightwardsBeam(Distance distance) {
     super(distance);
     origin = new PVector(0, int(random(height)));
