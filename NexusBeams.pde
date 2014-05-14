@@ -41,33 +41,33 @@ class NexusBeams {
     int direction = int(random(4)); // Number of directions
     switch (direction) {
       case 0: // Up
-        beam = new UpwardsBeam(getRandomDistance());
+        beam = new UpwardsBeam(getRandomBeamType());
         break;
       case 1: // Down
-        beam = new DownwardsBeam(getRandomDistance());
+        beam = new DownwardsBeam(getRandomBeamType());
         break;
       case 2: // Left
-        beam = new LeftwardsBeam(getRandomDistance());
+        beam = new LeftwardsBeam(getRandomBeamType());
         break;
       case 3: // Right
-        beam = new RightwardsBeam(getRandomDistance());
+        beam = new RightwardsBeam(getRandomBeamType());
         break;
     }
     return beam;
   }
 
   Beam[] newTouchBeams(int touchX, int touchY) {
-    Distance distance = getRandomDistance();
+    BeamType beamtype = getRandomBeamType();
     colours.shuffle();
     return new Beam[] {
-      new UpwardsBeam(distance, touchX, touchY, colours.get(0)),
-      new DownwardsBeam(distance, touchX, touchY, colours.get(1)),
-      new LeftwardsBeam(distance, touchX, touchY, colours.get(2)),
-      new RightwardsBeam(distance, touchX, touchY, colours.get(3))
+      new UpwardsBeam(beamtype, touchX, touchY, colours.get(0)),
+      new DownwardsBeam(beamtype, touchX, touchY, colours.get(1)),
+      new LeftwardsBeam(beamtype, touchX, touchY, colours.get(2)),
+      new RightwardsBeam(beamtype, touchX, touchY, colours.get(3))
     };
   }
 
-  Distance getRandomDistance() {
-    return Distance.values()[int(random(Distance.values().length))];
+  BeamType getRandomBeamType() {
+    return BeamType.values()[int(random(BeamType.values().length))];
   }
 }
