@@ -7,25 +7,23 @@ abstract class Beam {
   final color yellow = color(255, 255, 0);
   final color[] colours = {red, green, blue, yellow};
 
-  PVector origin, position;
-  PVector velocity;
-  float angle, length;
-  float transparency;
+  PVector origin, position, velocity;
+  float angle, length, transparency;
   int size;
   color colour;
 
   Beam(Distance distance) {
-    transparency = distance.getOpacity() * 255;
+    transparency = distance.getTransparency();
     size = distance.getSize();
     colour = colours[int(random(colours.length))];
   }
 
-  Beam(Distance distance, float originX, float originY, int colour) {
+  Beam(Distance distance, float originX, float originY, int colourID) {
     origin = new PVector(originX, originY);
     position = new PVector(originX, originY);
-    transparency = distance.getOpacity() * 255;
+    transparency = distance.getTransparency();
     size = distance.getSize();
-    this.colour = colours[colour];
+    colour = colours[colourID];
   }
 
   void drawBeam(float positionX, float positionY) {
@@ -35,13 +33,13 @@ abstract class Beam {
     rotate(angle);
     scale(size);
     beginShape(QUADS);
-    fill(colour, transparency);
+    fill(colour, transparency); // Body
     vertex(0, 0);
     vertex(1, 0);
-    fill(colour, tailTransparency);
+    fill(colour, tailTransparency); // Tail
     vertex(1, length);
     vertex(0, length);
-    fill(colour, transparency * 2);
+    fill(colour, transparency * 2); // Head
     vertex(0, 0);
     vertex(1, 0);
     fill(colour, 0);

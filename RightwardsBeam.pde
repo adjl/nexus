@@ -8,8 +8,8 @@ class RightwardsBeam extends Beam {
     angle = HALF_PI;
   }
 
-  RightwardsBeam(Distance distance, float originX, float originY, int colour) {
-    super(distance, originX, originY, colour);
+  RightwardsBeam(Distance distance, float originX, float originY, int colourID) {
+    super(distance, originX, originY, colourID);
     velocity = new PVector(distance.getVelocity(), 0);
     angle = HALF_PI;
   }

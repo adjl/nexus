@@ -8,8 +8,8 @@ class DownwardsBeam extends Beam {
     angle = PI;
   }
 
-  DownwardsBeam(Distance distance, float originX, float originY, int colour) {
-    super(distance, originX, originY, colour);
+  DownwardsBeam(Distance distance, float originX, float originY, int colourID) {
+    super(distance, originX, originY, colourID);
     velocity = new PVector(0, distance.getVelocity());
     angle = PI;
   }
