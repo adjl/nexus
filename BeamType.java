@@ -1,28 +1,28 @@
 enum BeamType {
 
-  FAR(5, 1, 0.5f),
-  MIDDLE(7, 2, 0.5f),
-  NEAR(9, 3, 0.5f);
+  FAR(1f, 0.5f, 5f),
+  MIDDLE(2f, 0.5f, 7f),
+  NEAR(3f, 0.5f, 9f);
 
-  final int size;
-  final int velocity;
+  final float velocity;
   final float transparency;
+  final float size;
 
-  BeamType(int size, int velocity, float transparency) {
-    this.size = size;
+  BeamType(float velocity, float transparency, float size) {
     this.velocity = velocity;
     this.transparency = transparency * 255;
+    this.size = size;
   }
 
-  int getSize() {
-    return size;
-  }
-
-  int getVelocity() {
+  float getVelocity() {
     return velocity;
   }
 
   float getTransparency() {
     return transparency;
+  }
+
+  float getSize() {
+    return size;
   }
 }

@@ -8,8 +8,7 @@ abstract class Beam {
   final color[] colours = {red, green, blue, yellow};
 
   PVector origin, position, velocity;
-  float angle, length, transparency;
-  int size;
+  float angle, length, transparency, size;
   color colour;
 
   Beam(BeamType beamType) {
