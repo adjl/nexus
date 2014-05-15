@@ -14,15 +14,15 @@ enum BeamType {
     this.size = size;
   }
 
-  float getAcceleration() {
+  float acceleration() {
     return acceleration;
   }
 
-  float getOpacity() {
+  float opacity() {
     return opacity;
   }
 
-  float getSize() {
+  float size() {
     return size;
   }
 }
