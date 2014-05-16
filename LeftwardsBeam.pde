@@ -22,6 +22,7 @@ class LeftwardsBeam extends Beam {
 
   void move() {
     velocity.add(acceleration);
+    velocity.limit(terminalVelocity);
     position.add(velocity);
     length = min((origin.x - position.x) / size + 1, maxLength);
   }
