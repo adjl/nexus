@@ -1,17 +1,19 @@
 enum BeamType {
 
-  FAR(1f, 0.1f, 0.5f, 5f),
-  MIDDLE(2f, 0.2f, 0.7f, 7f),
-  NEAR(3f, 0.3f, 0.9f, 9f);
+  FAR(1f, 0.1f, 5f, 0.5f, 5f),
+  MIDDLE(2f, 0.2f, 10f, 0.7f, 7f),
+  NEAR(3f, 0.3f, 15f, 0.9f, 9f);
 
   final float velocity;
   final float acceleration;
+  final float terminalVelocity;
   final float opacity;
   final float size;
 
-  BeamType(float velocity, float acceleration, float opacity, float size) {
+  BeamType(float velocity, float acceleration, float terminalVelocity, float opacity, float size) {
     this.velocity = velocity;
     this.acceleration = acceleration;
+    this.terminalVelocity = terminalVelocity;
     this.opacity = opacity * 255;
     this.size = size;
   }
@@ -22,6 +24,10 @@ enum BeamType {
 
   float acceleration() {
     return acceleration;
+  }
+
+  float terminalVelocity() {
+    return terminalVelocity;
   }
 
   float opacity() {
