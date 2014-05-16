@@ -1,8 +1,8 @@
 enum BeamType {
 
-  FAR(1f, 0.5f, 5f),
-  MIDDLE(2f, 0.5f, 7f),
-  NEAR(3f, 0.5f, 9f);
+  FAR(0.1f, 0.5f, 5f),
+  MIDDLE(0.2f, 0.7f, 7f),
+  NEAR(0.3f, 0.9f, 9f);
 
   final float acceleration;
   final float opacity;
