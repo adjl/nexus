@@ -1,11 +1,7 @@
 abstract class Beam {
 
   final float maxLength = 25.0f;
-  final color red = color(255, 0, 0);
-  final color green = color(0, 255, 0);
-  final color blue = color(0, 0, 255);
-  final color yellow = color(255, 255, 0);
-  final color[] colours = {red, green, blue, yellow};
+  final color[] colours = {#FF0000, #00FF00, #0000FF, #FFFF00};
 
   PVector origin, position, velocity, acceleration;
   float terminalVelocity, angle, length, opacity, size;
