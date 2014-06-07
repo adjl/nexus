@@ -1,6 +1,6 @@
 abstract class Beam {
 
-  final float maxLength = 25.0;
+  final float maxLength = 25.0f;
   final color red = color(255, 0, 0);
   final color green = color(0, 255, 0);
   final color blue = color(0, 0, 255);
