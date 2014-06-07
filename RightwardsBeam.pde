@@ -21,9 +21,7 @@ class RightwardsBeam extends Beam {
   }
 
   void move() {
-    velocity.add(acceleration);
-    velocity.limit(terminalVelocity);
-    position.add(velocity);
+    moveBeam();
     length = min((position.x - origin.x) / size + 1, maxLength);
   }
 

@@ -21,9 +21,7 @@ class UpwardsBeam extends Beam {
   }
 
   void move() {
-    velocity.add(acceleration);
-    velocity.limit(terminalVelocity);
-    position.add(velocity);
+    moveBeam();
     length = min((origin.y - position.y) / size + 1, maxLength);
   }
 

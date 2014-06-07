@@ -1,6 +1,6 @@
 abstract class Beam {
 
-  final float maxLength = 25;
+  final float maxLength = 25.0;
   final color red = color(255, 0, 0);
   final color green = color(0, 255, 0);
   final color blue = color(0, 0, 255);
@@ -25,6 +25,12 @@ abstract class Beam {
     opacity = beamType.opacity();
     size = beamType.size();
     colour = colours[colourID];
+  }
+
+  void moveBeam() {
+    velocity.add(acceleration);
+    velocity.limit(terminalVelocity);
+    position.add(velocity);
   }
 
   void drawBeam(float positionX, float positionY) {

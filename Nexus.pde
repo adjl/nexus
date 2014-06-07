@@ -1,27 +1,26 @@
 final int width = 1366;
 final int height = 768;
-final color black = color(0, 0, 0);
 
 NexusBeams beams;
-boolean isRunning;
+boolean running;
 
 void setup() {
   size(width, height, P2D);
   noStroke();
   beams = new NexusBeams();
-  isRunning = true;
+  running = true;
 }
 
 void draw() {
-  background(black);
-  if (isRunning) beams.update();
+  background(#000000);
+  if (running) beams.update();
   beams.draw();
 }
 
 void keyPressed() {
   switch (key) {
     case 'p': // Pause/resume
-      isRunning = !isRunning;
+      running = !running;
       break;
     case 'q': // Quit
       exit();
