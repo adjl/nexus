@@ -21,14 +21,14 @@ There are a number of settings you can change to your tastes (and to obtain inte
 - [`NexusBeams.pde`](https://github.com/adjl/Nexus/raw/master/NexusBeams.pde)
   - `chanceOfFiring` (default: 20)
 - [`Beam.pde`](https://github.com/adjl/Nexus/raw/master/Beam.pde)
-  - `maxLength` (default: 25)
+  - `maxLength` (default: 25.0f)
   - `colours` (default: red, green, blue, yellow)
 - [`BeamType.java`](https://github.com/adjl/Nexus/raw/master/BeamType.java)
-  - `velocity` (defaults: 1, 2, 3)
-  - `acceleration` (defaults: 0.1, 0.2, 0.3)
-  - `terminalVelocity` (defaults: 3, 6, 9)
-  - `opacity` (defaults: 0.5, 0.7, 0.9)
-  - `size` (defaults: 5, 7, 9)
+  - `velocity` (defaults: 1.0f, 2.0f, 3.0f)
+  - `acceleration` (defaults: 0.1f, 0.2f, 0.3f)
+  - `terminalVelocity` (defaults: 3.0f, 6.0f, 9.0f)
+  - `opacity` (defaults: 0.5f, 0.7f, 0.9f)
+  - `size` (defaults: 5.0f, 7.0f, 9.0f)
 
 ## Note
 The sketch does not seem to register the cursor location when it first runs.
