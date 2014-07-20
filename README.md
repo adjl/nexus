@@ -1,7 +1,7 @@
 # Nexus
 A Processing sketch inspired by Android's Nexus Live Wallpaper.
 
-![First screenshot of Nexus](https://github.com/adeijosol/Nexus/raw/master/img/screenshot1.png)
+![First screenshot of Nexus](https://github.com/adjl/Nexus/raw/master/img/screenshot0.png)
 
 ## Controls
 `p` - Pause/resume the sketch  
@@ -11,24 +11,18 @@ Like with the Wallpaper, "touching" (clicking on) the screen fires four beams fr
 
 `left-click` - Fire beams
 
-![Second screenshot of Nexus](https://github.com/adjl/Nexus/raw/master/img/screenshot2.png)
+![Second screenshot of Nexus](https://github.com/adjl/Nexus/raw/master/img/screenshot1.png)
 
-## Settings
-There are a number of settings you can change to your tastes (and to obtain interesting effects):
-- [`Nexus.pde`](https://github.com/adjl/Nexus/raw/master/Nexus.pde)
-  - `width` (default: 1366)
-  - `height` (default: 768)
-- [`NexusBeams.pde`](https://github.com/adjl/Nexus/raw/master/NexusBeams.pde)
-  - `chanceOfFiring` (default: 20)
-- [`Beam.pde`](https://github.com/adjl/Nexus/raw/master/Beam.pde)
-  - `maxLength` (default: 25.0f)
-  - `colours` (default: red, green, blue, yellow)
-- [`BeamType.java`](https://github.com/adjl/Nexus/raw/master/BeamType.java)
-  - `velocity` (defaults: 1.0f, 2.0f, 3.0f)
-  - `acceleration` (defaults: 0.1f, 0.2f, 0.3f)
-  - `terminalVelocity` (defaults: 3.0f, 6.0f, 9.0f)
-  - `opacity` (defaults: 0.5f, 0.7f, 0.9f)
-  - `size` (defaults: 5.0f, 7.0f, 9.0f)
+## Parameters
+Modify the following in [`Nexus.pde`](https://github.com/adjl/Nexus/raw/master/Nexus.pde) to your preferences:
+- `WIDTH` (default: 1366)
+- `HEIGHT` (default: 768)
+- `BEAM_CHANCE_OF_FIRING` (default: 20)
+  - 1 in 20
+- `COLOURS_COUNT` (default: 4)
+  - Number of colours
+- `BEAM_MAX_LENGTH` (default: 25.0)
+- `COLOURS` (default: red, green, blue, yellow)
 
 ## Note
 The sketch does not seem to register the cursor location when it first runs.
