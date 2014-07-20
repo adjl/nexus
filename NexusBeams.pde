@@ -1,23 +1,25 @@
 class NexusBeams {
 
-  final int chanceOfFiring = 20; // 1 in 20
-
   ArrayList<Beam> beams;
   IntList colours;
 
   NexusBeams() {
     beams = new ArrayList<Beam>();
     colours = new IntList();
-    for (int i = 0; i < 4; i++) { // Number of colours
+    for (int i = 0; i < COLOURS_COUNT; i++) {
       colours.append(i);
     }
   }
 
   void update() {
-    if (int(random(chanceOfFiring)) == 0) beams.add(newBeam());
+    if (int(random(BEAM_CHANCE_OF_FIRING)) == 0) {
+      beams.add(newBeam());
+    }
     for (int i = beams.size() - 1; i >= 0; i--) {
       beams.get(i).move();
-      if (beams.get(i).isGone()) beams.remove(i);
+      if (beams.get(i).isGone()) {
+        beams.remove(i);
+      }
     }
   }
 

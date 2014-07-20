@@ -22,7 +22,7 @@ class DownwardsBeam extends Beam {
 
   void move() {
     moveBeam();
-    length = min((position.y - origin.y) / size + 1, maxLength);
+    length = min((position.y - origin.y) / size + 1, BEAM_MAX_LENGTH);
   }
 
   void draw() {

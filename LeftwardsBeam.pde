@@ -22,7 +22,7 @@ class LeftwardsBeam extends Beam {
 
   void move() {
     moveBeam();
-    length = min((origin.x - position.x) / size + 1, maxLength);
+    length = min((origin.x - position.x) / size + 1, BEAM_MAX_LENGTH);
   }
 
   void draw() {

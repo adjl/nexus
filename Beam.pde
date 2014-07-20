@@ -1,8 +1,5 @@
 abstract class Beam {
 
-  final float maxLength = 25.0f;
-  final color[] colours = {#FF0000, #00FF00, #0000FF, #FFFF00};
-
   PVector origin, position, velocity, acceleration;
   float terminalVelocity, angle, length, opacity, size;
   color colour;
@@ -11,7 +8,7 @@ abstract class Beam {
     terminalVelocity = beamType.terminalVelocity();
     opacity = beamType.opacity();
     size = beamType.size();
-    colour = colours[int(random(colours.length))];
+    colour = COLOURS[int(random(COLOURS.length))];
   }
 
   Beam(BeamType beamType, float originX, float originY, int colourID) {
@@ -20,7 +17,7 @@ abstract class Beam {
     terminalVelocity = beamType.terminalVelocity();
     opacity = beamType.opacity();
     size = beamType.size();
-    colour = colours[colourID];
+    colour = COLOURS[colourID];
   }
 
   void moveBeam() {
@@ -30,7 +27,7 @@ abstract class Beam {
   }
 
   void drawBeam(float positionX, float positionY) {
-    float tailOpacity = map(maxLength - length, 0, maxLength, 0, opacity);
+    float tailOpacity = map(BEAM_MAX_LENGTH - length, 0, BEAM_MAX_LENGTH, 0, opacity);
     pushMatrix();
     translate(positionX, positionY);
     rotate(angle);

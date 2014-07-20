@@ -6,14 +6,14 @@ class UpwardsBeam extends Beam {
     position = new PVector(origin.x, origin.y);
     velocity = new PVector(0, -beamType.velocity());
     acceleration = new PVector(0, -beamType.acceleration());
-    angle = 0.0f;
+    angle = 0.0;
   }
 
   UpwardsBeam(BeamType beamType, float originX, float originY, int colourID) {
     super(beamType, originX, originY, colourID);
     velocity = new PVector(0, -beamType.velocity());
     acceleration = new PVector(0, -beamType.acceleration());
-    angle = 0.0f;
+    angle = 0.0;
   }
 
   boolean isGone() {
@@ -22,7 +22,7 @@ class UpwardsBeam extends Beam {
 
   void move() {
     moveBeam();
-    length = min((origin.y - position.y) / size + 1, maxLength);
+    length = min((origin.y - position.y) / size + 1, BEAM_MAX_LENGTH);
   }
 
   void draw() {

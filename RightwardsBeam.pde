@@ -22,7 +22,7 @@ class RightwardsBeam extends Beam {
 
   void move() {
     moveBeam();
-    length = min((position.x - origin.x) / size + 1, maxLength);
+    length = min((position.x - origin.x) / size + 1, BEAM_MAX_LENGTH);
   }
 
   void draw() {
