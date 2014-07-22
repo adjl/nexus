@@ -13,7 +13,7 @@ Like with the Wallpaper, "touching" (clicking on) the screen fires four beams fr
 
 ![Second screenshot of Nexus](https://github.com/adjl/Nexus/raw/master/img/screenshot1.png)
 
-## Parameters
+## Settings
 Modify the following in [`Nexus.pde`](https://github.com/adjl/Nexus/raw/master/Nexus.pde) to your preferences:
 - `WIDTH` (default: 1366)
 - `HEIGHT` (default: 768)
