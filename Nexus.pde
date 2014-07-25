@@ -1,5 +1,3 @@
-final int WIDTH = 1366;
-final int HEIGHT = 768;
 final int BEAM_CHANCE_OF_FIRING = 20; // 1 in 20
 final int COLOURS_COUNT = 4; // Number of colours
 final float BEAM_MAX_LENGTH = 25.0;
@@ -11,7 +9,7 @@ NexusBeams beams;
 boolean running;
 
 void setup() {
-  size(WIDTH, HEIGHT, P2D);
+  size(displayWidth, displayHeight, P2D);
   noStroke();
   beams = new NexusBeams();
   running = true;
