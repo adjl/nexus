@@ -10,7 +10,8 @@ enum BeamType {
     final float opacity;
     final float size;
 
-    BeamType(float velocity, float acceleration, float terminalVelocity, float opacity, float size) {
+    BeamType(float velocity, float acceleration, float terminalVelocity,
+             float opacity, float size) {
         this.velocity = velocity;
         this.acceleration = acceleration;
         this.terminalVelocity = terminalVelocity;
