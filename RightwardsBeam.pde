@@ -2,30 +2,30 @@ class RightwardsBeam extends Beam {
 
     RightwardsBeam(BeamType beamType) {
         super(beamType);
-        origin = new PVector(0, int(random(height)));
-        position = new PVector(origin.x, origin.y);
-        velocity = new PVector(beamType.velocity(), 0);
-        acceleration = new PVector(beamType.acceleration(), 0);
-        angle = HALF_PI;
+        mOrigin = new PVector(0, int(random(height)));
+        mPosition = new PVector(mOrigin.x, mOrigin.y);
+        mVelocity = new PVector(beamType.getVelocity(), 0);
+        mAcceleration = new PVector(beamType.getAcceleration(), 0);
+        mAngle = HALF_PI;
     }
 
-    RightwardsBeam(BeamType beamType, float originX, float originY, int colourID) {
-        super(beamType, originX, originY, colourID);
-        velocity = new PVector(beamType.velocity(), 0);
-        acceleration = new PVector(beamType.acceleration(), 0);
-        angle = HALF_PI;
+    RightwardsBeam(BeamType beamType, float originX, float originY, int colourId) {
+        super(beamType, originX, originY, colourId);
+        mVelocity = new PVector(beamType.getVelocity(), 0);
+        mAcceleration = new PVector(beamType.getAcceleration(), 0);
+        mAngle = HALF_PI;
     }
 
     boolean isGone() {
-        return position.x - length * size >= width;
+        return mPosition.x - mLength * mSize >= width;
     }
 
     void move() {
         moveBeam();
-        length = min((position.x - origin.x) / size + 1, BEAM_MAX_LENGTH);
+        mLength = min((mPosition.x - mOrigin.x) / mSize + 1, BEAM_MAX_LENGTH);
     }
 
     void draw() {
-        drawBeam(position.x + size * 0.5, position.y - size * 0.5);
+        drawBeam(mPosition.x + mSize * 0.5, mPosition.y - mSize * 0.5);
     }
 }

@@ -2,30 +2,30 @@ class DownwardsBeam extends Beam {
 
     DownwardsBeam(BeamType beamType) {
         super(beamType);
-        origin = new PVector(int(random(width)), 0);
-        position = new PVector(origin.x, origin.y);
-        velocity = new PVector(0, beamType.velocity());
-        acceleration = new PVector(0, beamType.acceleration());
-        angle = PI;
+        mOrigin = new PVector(int(random(width)), 0);
+        mPosition = new PVector(mOrigin.x, mOrigin.y);
+        mVelocity = new PVector(0, beamType.getVelocity());
+        mAcceleration = new PVector(0, beamType.getAcceleration());
+        mAngle = PI;
     }
 
-    DownwardsBeam(BeamType beamType, float originX, float originY, int colourID) {
-        super(beamType, originX, originY, colourID);
-        velocity = new PVector(0, beamType.velocity());
-        acceleration = new PVector(0, beamType.acceleration());
-        angle = PI;
+    DownwardsBeam(BeamType beamType, float originX, float originY, int colourId) {
+        super(beamType, originX, originY, colourId);
+        mVelocity = new PVector(0, beamType.getVelocity());
+        mAcceleration = new PVector(0, beamType.getAcceleration());
+        mAngle = PI;
     }
 
     boolean isGone() {
-        return position.y - length * size >= height;
+        return mPosition.y - mLength * mSize >= height;
     }
 
     void move() {
         moveBeam();
-        length = min((position.y - origin.y) / size + 1, BEAM_MAX_LENGTH);
+        mLength = min((mPosition.y - mOrigin.y) / mSize + 1, BEAM_MAX_LENGTH);
     }
 
     void draw() {
-        drawBeam(position.x + size * 0.5, position.y + size * 0.5);
+        drawBeam(mPosition.x + mSize * 0.5, mPosition.y + mSize * 0.5);
     }
 }

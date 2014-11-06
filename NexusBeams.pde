@@ -1,73 +1,68 @@
 class NexusBeams {
 
-    ArrayList<Beam> beams;
-    IntList colours;
+    ArrayList<Beam> mBeams;
+    IntList mColours;
 
     NexusBeams() {
-        beams = new ArrayList<Beam>();
-        colours = new IntList();
-        for (int i = 0; i < COLOURS_COUNT; i++) {
-            colours.append(i);
+        mBeams = new ArrayList<Beam>();
+        mColours = new IntList();
+        for (int i = 0; i < COLOURS.length; i++) {
+            mColours.append(i);
         }
     }
 
     void update() {
         if (int(random(BEAM_CHANCE_OF_FIRING)) == 0) {
-            beams.add(newBeam());
+            mBeams.add(createNewBeam());
         }
-        for (int i = beams.size() - 1; i >= 0; i--) {
-            beams.get(i).move();
-            if (beams.get(i).isGone()) {
-                beams.remove(i);
+        for (int i = mBeams.size() - 1; i >= 0; i--) {
+            mBeams.get(i).move();
+            if (mBeams.get(i).isGone()) {
+                mBeams.remove(i);
             }
         }
     }
 
     void draw() {
-        for (Beam beam : beams) {
+        for (Beam beam : mBeams) {
             beam.draw();
         }
     }
 
     void createTouchBeams(int touchX, int touchY) {
-        Beam[] touchBeams = newTouchBeams(touchX, touchY);
+        Beam[] touchBeams = createNewTouchBeams(touchX, touchY);
         for (int i = 0; i < touchBeams.length; i++) {
-            beams.add(touchBeams[i]);
+            mBeams.add(touchBeams[i]);
         }
     }
 
-    Beam newBeam() {
-        Beam beam = null;
-        int direction = int(random(4)); // Number of directions
-        switch (direction) {
+    Beam createNewBeam() {
+        switch (int(random(4))) { // Number of directions
             case 0: // Up
-                beam = new UpwardsBeam(randomBeamType());
-                break;
+                return (Beam) new UpwardsBeam(getRandomBeamType());
             case 1: // Down
-                beam = new DownwardsBeam(randomBeamType());
-                break;
+                return (Beam) new DownwardsBeam(getRandomBeamType());
             case 2: // Left
-                beam = new LeftwardsBeam(randomBeamType());
-                break;
+                return (Beam) new LeftwardsBeam(getRandomBeamType());
             case 3: // Right
-                beam = new RightwardsBeam(randomBeamType());
-                break;
+                return (Beam) new RightwardsBeam(getRandomBeamType());
+            default:
+                return null;
         }
-        return beam;
     }
 
-    Beam[] newTouchBeams(int touchX, int touchY) {
-        BeamType beamtype = randomBeamType();
-        colours.shuffle();
+    Beam[] createNewTouchBeams(int touchX, int touchY) {
+        mColours.shuffle();
+        BeamType beamtype = getRandomBeamType();
         return new Beam[] {
-            new UpwardsBeam(beamtype, touchX, touchY, colours.get(0)),
-            new DownwardsBeam(beamtype, touchX, touchY, colours.get(1)),
-            new LeftwardsBeam(beamtype, touchX, touchY, colours.get(2)),
-            new RightwardsBeam(beamtype, touchX, touchY, colours.get(3))
+            new UpwardsBeam(beamtype, touchX, touchY, mColours.get(0)),
+            new DownwardsBeam(beamtype, touchX, touchY, mColours.get(1)),
+            new LeftwardsBeam(beamtype, touchX, touchY, mColours.get(2)),
+            new RightwardsBeam(beamtype, touchX, touchY, mColours.get(3))
         };
     }
 
-    BeamType randomBeamType() {
+    BeamType getRandomBeamType() {
         return BeamType.values()[int(random(BeamType.values().length))];
     }
 }

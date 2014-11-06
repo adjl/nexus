@@ -2,30 +2,30 @@ class LeftwardsBeam extends Beam {
 
     LeftwardsBeam(BeamType beamType) {
         super(beamType);
-        origin = new PVector(width - 1, int(random(height)));
-        position = new PVector(origin.x, origin.y);
-        velocity = new PVector(-beamType.velocity(), 0);
-        acceleration = new PVector(-beamType.acceleration(), 0);
-        angle = PI + HALF_PI;
+        mOrigin = new PVector(width - 1, int(random(height)));
+        mPosition = new PVector(mOrigin.x, mOrigin.y);
+        mVelocity = new PVector(-beamType.getVelocity(), 0);
+        mAcceleration = new PVector(-beamType.getAcceleration(), 0);
+        mAngle = PI + HALF_PI;
     }
 
-    LeftwardsBeam(BeamType beamType, float originX, float originY, int colourID) {
-        super(beamType, originX, originY, colourID);
-        velocity = new PVector(-beamType.velocity(), 0);
-        acceleration = new PVector(-beamType.acceleration(), 0);
-        angle = PI + HALF_PI;
+    LeftwardsBeam(BeamType beamType, float originX, float originY, int colourId) {
+        super(beamType, originX, originY, colourId);
+        mVelocity = new PVector(-beamType.getVelocity(), 0);
+        mAcceleration = new PVector(-beamType.getAcceleration(), 0);
+        mAngle = PI + HALF_PI;
     }
 
     boolean isGone() {
-        return position.x + length * size < 0;
+        return mPosition.x + mLength * mSize < 0;
     }
 
     void move() {
         moveBeam();
-        length = min((origin.x - position.x) / size + 1, BEAM_MAX_LENGTH);
+        mLength = min((mOrigin.x - mPosition.x) / mSize + 1, BEAM_MAX_LENGTH);
     }
 
     void draw() {
-        drawBeam(position.x - size * 0.5, position.y + size * 0.5);
+        drawBeam(mPosition.x - mSize * 0.5, mPosition.y + mSize * 0.5);
     }
 }
