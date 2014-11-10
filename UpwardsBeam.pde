@@ -1,4 +1,4 @@
-class UpwardsBeam extends Beam {
+private class UpwardsBeam extends Beam {
 
     UpwardsBeam(BeamType beamType) {
         super(beamType);

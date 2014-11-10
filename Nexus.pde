@@ -1,30 +1,33 @@
-final color[] COLOURS = {#FF0000, #00FF00, #0000FF, #FFFF00};
-final color BACKGROUND = #232830;
-final float BEAM_MAX_LENGTH = 25.0;
-final int BEAM_CHANCE_OF_FIRING = 20; // 1 in 20
+private static final color[] COLOURS = {#FF0000, #00FF00, #0000FF, #FFFF00};
+private static final color BACKGROUND = #232830;
+private static final float BEAM_MAX_LENGTH = 25.0;
+private static final int BEAM_CHANCE_OF_FIRING = 20; // 1 in 20
 
-NexusBeams beams;
-boolean running;
+private NexusBeams mBeams;
+private boolean mRunning;
 
+@Override
 void setup() {
     size(displayWidth, displayHeight, P2D);
     noStroke();
-    beams = new NexusBeams();
-    running = true;
+    mBeams = new NexusBeams();
+    mRunning = true;
 }
 
+@Override
 void draw() {
     background(BACKGROUND);
-    if (running) {
-        beams.update();
+    if (mRunning) {
+        mBeams.update();
     }
-    beams.draw();
+    mBeams.draw();
 }
 
+@Override
 void keyPressed() {
     switch (key) {
         case 'p': // Pause/resume
-            running = !running;
+            mRunning = !mRunning;
             break;
         case 'q': // Quit
             exit();
@@ -32,6 +35,7 @@ void keyPressed() {
     }
 }
 
+@Override
 void mousePressed() {
-    beams.createTouchBeams(mouseX, mouseY);
+    mBeams.createTouchBeams(mouseX, mouseY);
 }

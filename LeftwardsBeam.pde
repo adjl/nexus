@@ -1,4 +1,4 @@
-class LeftwardsBeam extends Beam {
+private class LeftwardsBeam extends Beam {
 
     LeftwardsBeam(BeamType beamType) {
         super(beamType);

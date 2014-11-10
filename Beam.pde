@@ -1,17 +1,19 @@
-abstract class Beam {
+private abstract class Beam {
+
+    private final float mTerminalVelocity;
+    private final float mOpacity;
+
+    private color mColour;
+
+    final float mSize;
 
     PVector mOrigin;
     PVector mPosition;
     PVector mVelocity;
     PVector mAcceleration;
 
-    float mTerminalVelocity;
     float mAngle;
     float mLength;
-    float mOpacity;
-    float mSize;
-
-    color mColour;
 
     Beam(BeamType beamType) {
         mTerminalVelocity = beamType.getTerminalVelocity();

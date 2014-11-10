@@ -1,7 +1,7 @@
-class NexusBeams {
+private class NexusBeams {
 
-    ArrayList<Beam> mBeams;
-    IntList mColours;
+    private final ArrayList<Beam> mBeams;
+    private final IntList mColours;
 
     NexusBeams() {
         mBeams = new ArrayList<Beam>();
@@ -36,22 +36,24 @@ class NexusBeams {
         }
     }
 
-    Beam createNewBeam() {
+    private Beam createNewBeam() {
         switch (int(random(4))) { // Number of directions
             case 0: // Up
-                return (Beam) new UpwardsBeam(getRandomBeamType());
+                return new UpwardsBeam(getRandomBeamType());
             case 1: // Down
-                return (Beam) new DownwardsBeam(getRandomBeamType());
+                return new DownwardsBeam(getRandomBeamType());
             case 2: // Left
-                return (Beam) new LeftwardsBeam(getRandomBeamType());
+                return new LeftwardsBeam(getRandomBeamType());
             case 3: // Right
-                return (Beam) new RightwardsBeam(getRandomBeamType());
-            default:
+                return new RightwardsBeam(getRandomBeamType());
+            default: // Should not happen
+                println("Fatal error: Returned an invalid beam direction");
+                exit();
                 return null;
         }
     }
 
-    Beam[] createNewTouchBeams(int touchX, int touchY) {
+    private Beam[] createNewTouchBeams(int touchX, int touchY) {
         mColours.shuffle();
         BeamType beamtype = getRandomBeamType();
         return new Beam[] {
@@ -62,7 +64,7 @@ class NexusBeams {
         };
     }
 
-    BeamType getRandomBeamType() {
+    private BeamType getRandomBeamType() {
         return BeamType.values()[int(random(BeamType.values().length))];
     }
 }
