@@ -47,8 +47,8 @@ private class NexusBeams {
                 return new LeftwardsBeam(BeamType.getRandomBeamType());
             case RIGHT:
                 return new RightwardsBeam(BeamType.getRandomBeamType());
-            default: // Should not happen
-                println("Error: Returned an invalid beam direction");
+            default: // Should never happen
+                println("Fatal error: Returned an invalid beam direction");
                 exit();
                 return null;
         }
