@@ -58,10 +58,10 @@ private class NexusBeams {
         mColours.shuffle();
         BeamType beamtype = BeamType.getRandomBeamType();
         return new Beam[] {
-            new UpwardsBeam(beamtype, touchX, touchY, mColours.get(UP)),
-            new DownwardsBeam(beamtype, touchX, touchY, mColours.get(DOWN)),
-            new LeftwardsBeam(beamtype, touchX, touchY, mColours.get(LEFT)),
-            new RightwardsBeam(beamtype, touchX, touchY, mColours.get(RIGHT))
+            new UpwardsBeam(beamtype, touchX, touchY, mColours.get(0)),
+            new DownwardsBeam(beamtype, touchX, touchY, mColours.get(1)),
+            new LeftwardsBeam(beamtype, touchX, touchY, mColours.get(2)),
+            new RightwardsBeam(beamtype, touchX, touchY, mColours.get(3))
         };
     }
 }
