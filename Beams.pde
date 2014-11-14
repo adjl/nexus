@@ -2,7 +2,7 @@ private class UpwardsBeam extends Beam {
 
     UpwardsBeam(BeamType beamType) {
         super(beamType);
-        mOrigin = new PVector(int(random(width)), height - 1);
+        mOrigin = new PVector(nextInt(width), height - 1);
         mPosition = new PVector(mOrigin.x, mOrigin.y);
         mVelocity = new PVector(0, -beamType.getVelocity());
         mAcceleration = new PVector(0, -beamType.getAcceleration());
@@ -32,7 +32,7 @@ private class DownwardsBeam extends Beam {
 
     DownwardsBeam(BeamType beamType) {
         super(beamType);
-        mOrigin = new PVector(int(random(width)), 0);
+        mOrigin = new PVector(nextInt(width), 0);
         mPosition = new PVector(mOrigin.x, mOrigin.y);
         mVelocity = new PVector(0, beamType.getVelocity());
         mAcceleration = new PVector(0, beamType.getAcceleration());
@@ -64,7 +64,7 @@ private class LeftwardsBeam extends Beam {
 
     LeftwardsBeam(BeamType beamType) {
         super(beamType);
-        mOrigin = new PVector(width - 1, int(random(height)));
+        mOrigin = new PVector(width - 1, nextInt(height));
         mPosition = new PVector(mOrigin.x, mOrigin.y);
         mVelocity = new PVector(-beamType.getVelocity(), 0);
         mAcceleration = new PVector(-beamType.getAcceleration(), 0);
@@ -96,7 +96,7 @@ private class RightwardsBeam extends Beam {
 
     RightwardsBeam(BeamType beamType) {
         super(beamType);
-        mOrigin = new PVector(0, int(random(height)));
+        mOrigin = new PVector(0, nextInt(height));
         mPosition = new PVector(mOrigin.x, mOrigin.y);
         mVelocity = new PVector(beamType.getVelocity(), 0);
         mAcceleration = new PVector(beamType.getAcceleration(), 0);

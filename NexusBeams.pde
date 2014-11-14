@@ -14,7 +14,7 @@ private class NexusBeams {
     }
 
     void update() {
-        if (int(random(BEAM_CHANCE_OF_FIRING)) == 0) {
+        if (nextInt(BEAM_CHANCE_OF_FIRING) == 0) {
             mBeams.add(createNewBeam());
         }
         for (int i = mBeams.size() - 1; i >= 0; i--) {

@@ -39,3 +39,7 @@ void keyPressed() {
 void mousePressed() {
     mBeams.createTouchBeams(mouseX, mouseY);
 }
+
+private int nextInt(int limit) {
+    return int(random(limit));
+}

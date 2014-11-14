@@ -19,7 +19,7 @@ private abstract class Beam {
         mTerminalVelocity = beamType.getTerminalVelocity();
         mAlpha = beamType.getAlpha();
         mSize = beamType.getSize();
-        mColour = COLOURS[int(random(COLOURS.length))];
+        mColour = COLOURS[nextInt(COLOURS.length)];
     }
 
     Beam(BeamType beamType, float originX, float originY, int colourId) {
