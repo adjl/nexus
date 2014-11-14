@@ -1,7 +1,7 @@
 private abstract class Beam {
 
     private final float mTerminalVelocity;
-    private final float mOpacity;
+    private final float mAlpha;
 
     private color mColour;
 
@@ -17,7 +17,7 @@ private abstract class Beam {
 
     Beam(BeamType beamType) {
         mTerminalVelocity = beamType.getTerminalVelocity();
-        mOpacity = beamType.getOpacity();
+        mAlpha = beamType.getAlpha();
         mSize = beamType.getSize();
         mColour = COLOURS[int(random(COLOURS.length))];
     }
@@ -36,19 +36,19 @@ private abstract class Beam {
     }
 
     void drawBeam(float positionX, float positionY) {
-        float tailOpacity = map(BEAM_MAX_LENGTH - mLength, 0, BEAM_MAX_LENGTH, 0, mOpacity);
+        float tailAlpha = map(BEAM_MAX_LENGTH - mLength, 0, BEAM_MAX_LENGTH, 0, mAlpha);
         pushMatrix();
         translate(positionX, positionY);
         rotate(mAngle);
         scale(mSize);
         beginShape(QUADS);
-        fill(mColour, mOpacity); // Body
+        fill(mColour, mAlpha); // Body
         vertex(0, 0);
         vertex(1, 0);
-        fill(mColour, tailOpacity); // Tail
+        fill(mColour, tailAlpha); // Tail
         vertex(1, mLength);
         vertex(0, mLength);
-        fill(mColour, mOpacity * 2); // Head
+        fill(mColour, mAlpha * 2); // Head
         vertex(0, 0);
         vertex(1, 0);
         fill(mColour, 0);

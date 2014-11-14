@@ -8,19 +8,19 @@ enum BeamType {
 
     private static final BeamType[] VALUES = BeamType.values();
     private static final Random RANDOM = new Random();
+    private static final int OPAQUE = 255;
 
     private final float mVelocity;
     private final float mAcceleration;
     private final float mTerminalVelocity;
-    private final float mOpacity;
+    private final float mAlpha;
     private final float mSize;
 
-    BeamType(float velocity, float acceleration, float terminalVelocity,
-             float opacity, float size) {
+    BeamType(float velocity, float acceleration, float terminalVelocity, float alpha, float size) {
         mVelocity = velocity;
         mAcceleration = acceleration;
         mTerminalVelocity = terminalVelocity;
-        mOpacity = opacity * 255;
+        mAlpha = alpha * OPAQUE;
         mSize = size;
     }
 
@@ -40,8 +40,8 @@ enum BeamType {
         return mTerminalVelocity;
     }
 
-    float getOpacity() {
-        return mOpacity;
+    float getAlpha() {
+        return mAlpha;
     }
 
     float getSize() {
