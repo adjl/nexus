@@ -1,6 +1,8 @@
+import java.util.List;
+
 private class NexusBeams {
 
-    private final ArrayList<Beam> mBeams;
+    private final List<Beam> mBeams;
     private final IntList mColours;
 
     NexusBeams() {
@@ -30,24 +32,23 @@ private class NexusBeams {
     }
 
     void createTouchBeams(int touchX, int touchY) {
-        Beam[] touchBeams = createNewTouchBeams(touchX, touchY);
-        for (int i = 0; i < touchBeams.length; i++) {
-            mBeams.add(touchBeams[i]);
+        for (Beam touchBeam : createNewTouchBeams(touchX, touchY)) {
+            mBeams.add(touchBeam);
         }
     }
 
     private Beam createNewBeam() {
-        switch (int(random(4))) { // Number of directions
-            case 0: // Up
-                return new UpwardsBeam(getRandomBeamType());
-            case 1: // Down
-                return new DownwardsBeam(getRandomBeamType());
-            case 2: // Left
-                return new LeftwardsBeam(getRandomBeamType());
-            case 3: // Right
-                return new RightwardsBeam(getRandomBeamType());
+        switch (Direction.getRandomDirection()) {
+            case UP:
+                return new UpwardsBeam(BeamType.getRandomBeamType());
+            case DOWN:
+                return new DownwardsBeam(BeamType.getRandomBeamType());
+            case LEFT:
+                return new LeftwardsBeam(BeamType.getRandomBeamType());
+            case RIGHT:
+                return new RightwardsBeam(BeamType.getRandomBeamType());
             default: // Should not happen
-                println("Fatal error: Returned an invalid beam direction");
+                println("Error: Returned an invalid beam direction");
                 exit();
                 return null;
         }
@@ -55,16 +56,12 @@ private class NexusBeams {
 
     private Beam[] createNewTouchBeams(int touchX, int touchY) {
         mColours.shuffle();
-        BeamType beamtype = getRandomBeamType();
+        BeamType beamtype = BeamType.getRandomBeamType();
         return new Beam[] {
-            new UpwardsBeam(beamtype, touchX, touchY, mColours.get(0)),
-            new DownwardsBeam(beamtype, touchX, touchY, mColours.get(1)),
-            new LeftwardsBeam(beamtype, touchX, touchY, mColours.get(2)),
-            new RightwardsBeam(beamtype, touchX, touchY, mColours.get(3))
+            new UpwardsBeam(beamtype, touchX, touchY, mColours.get(UP)),
+            new DownwardsBeam(beamtype, touchX, touchY, mColours.get(DOWN)),
+            new LeftwardsBeam(beamtype, touchX, touchY, mColours.get(LEFT)),
+            new RightwardsBeam(beamtype, touchX, touchY, mColours.get(RIGHT))
         };
-    }
-
-    private BeamType getRandomBeamType() {
-        return BeamType.values()[int(random(BeamType.values().length))];
     }
 }
