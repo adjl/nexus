@@ -6,8 +6,8 @@ enum BeamType {
     MIDDLE(2.0f, 0.2f, 6.0f, 0.7f, 7.0f),
     NEAR(3.0f, 0.3f, 9.0f, 0.9f, 9.0f);
 
-    private static final BeamType[] sValues = BeamType.values();
-    private static final Random sRandom = new Random();
+    private static final BeamType[] VALUES = BeamType.values();
+    private static final Random RANDOM = new Random();
 
     private final float mVelocity;
     private final float mAcceleration;
@@ -25,7 +25,7 @@ enum BeamType {
     }
 
     static BeamType getRandomBeamType() {
-        return sValues[sRandom.nextInt(sValues.length)];
+        return VALUES[RANDOM.nextInt(VALUES.length)];
     }
 
     float getVelocity() {

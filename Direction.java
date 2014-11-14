@@ -4,10 +4,10 @@ enum Direction {
 
     UP, DOWN, LEFT, RIGHT;
 
-    private static final Direction[] sValues = Direction.values();
-    private static final Random sRandom = new Random();
+    private static final Direction[] VALUES = Direction.values();
+    private static final Random RANDOM = new Random();
 
     static Direction getRandomDirection() {
-        return sValues[sRandom.nextInt(sValues.length)];
+        return VALUES[RANDOM.nextInt(VALUES.length)];
     }
 };
