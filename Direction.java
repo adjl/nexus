@@ -10,4 +10,4 @@ enum Direction {
     static Direction getRandomDirection() {
         return VALUES[RANDOM.nextInt(VALUES.length)];
     }
-};
+}

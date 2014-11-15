@@ -1,4 +1,13 @@
-private abstract class Beam {
+private interface Beam {
+
+    boolean isGone();
+
+    void move();
+
+    void draw();
+}
+
+private class BeamImpl {
 
     private final float mTerminalVelocity;
     private final float mAlpha;
@@ -11,31 +20,30 @@ private abstract class Beam {
     PVector mPosition;
     PVector mVelocity;
     PVector mAcceleration;
-
     float mAngle;
     float mLength;
 
-    Beam(BeamType beamType) {
+    BeamImpl(BeamType beamType) {
         mTerminalVelocity = beamType.getTerminalVelocity();
         mAlpha = beamType.getAlpha();
         mSize = beamType.getSize();
         mColour = COLOURS[nextInt(COLOURS.length)];
     }
 
-    Beam(BeamType beamType, float originX, float originY, int colourId) {
+    BeamImpl(BeamType beamType, PVector origin, int colourId) {
         this(beamType);
-        mOrigin = new PVector(originX, originY);
+        mOrigin = origin;
         mPosition = mOrigin.get();
         mColour = COLOURS[colourId];
     }
 
-    void moveBeam() {
+    void move() {
         mVelocity.add(mAcceleration);
         mVelocity.limit(mTerminalVelocity);
         mPosition.add(mVelocity);
     }
 
-    void drawBeam(float positionX, float positionY) {
+    void draw(float positionX, float positionY) {
         float tailAlpha = map(BEAM_MAX_LENGTH - mLength, 0, BEAM_MAX_LENGTH, 0, mAlpha);
         pushMatrix();
         translate(positionX, positionY);
@@ -57,10 +65,151 @@ private abstract class Beam {
         endShape(CLOSE);
         popMatrix();
     }
+}
 
-    abstract boolean isGone();
+private class UpwardsBeam extends BeamImpl implements Beam {
 
-    abstract void move();
+    UpwardsBeam(BeamType beamType) {
+        super(beamType);
+        mOrigin = new PVector(nextInt(width), height - 1);
+        mPosition = mOrigin.get();
+        setVectorsAndAngle(beamType);
+    }
 
-    abstract void draw();
+    UpwardsBeam(BeamType beamType, PVector origin, int colourId) {
+        super(beamType, origin, colourId);
+        setVectorsAndAngle(beamType);
+    }
+
+    private void setVectorsAndAngle(BeamType beamType) {
+        mVelocity = new PVector(0, -beamType.getVelocity());
+        mAcceleration = new PVector(0, -beamType.getAcceleration());
+    }
+
+    @Override
+    boolean isGone() {
+        return mPosition.y + mLength * mSize < 0;
+    }
+
+    @Override
+    void move() {
+        super.move();
+        mLength = min((mOrigin.y - mPosition.y) / mSize + 1, BEAM_MAX_LENGTH);
+    }
+
+    @Override
+    void draw() {
+        draw(mPosition.x - mSize * 0.5, mPosition.y - mSize * 0.5);
+    }
+}
+
+private class DownwardsBeam extends BeamImpl implements Beam {
+
+    DownwardsBeam(BeamType beamType) {
+        super(beamType);
+        mOrigin = new PVector(nextInt(width), 0);
+        mPosition = mOrigin.get();
+        setVectorsAndAngle(beamType);
+    }
+
+    DownwardsBeam(BeamType beamType, PVector origin, int colourId) {
+        super(beamType, origin, colourId);
+        setVectorsAndAngle(beamType);
+    }
+
+    private void setVectorsAndAngle(BeamType beamType) {
+        mVelocity = new PVector(0, beamType.getVelocity());
+        mAcceleration = new PVector(0, beamType.getAcceleration());
+        mAngle = PI;
+    }
+
+    @Override
+    boolean isGone() {
+        return mPosition.y - mLength * mSize >= height;
+    }
+
+    @Override
+    void move() {
+        super.move();
+        mLength = min((mPosition.y - mOrigin.y) / mSize + 1, BEAM_MAX_LENGTH);
+    }
+
+    @Override
+    void draw() {
+        draw(mPosition.x + mSize * 0.5, mPosition.y + mSize * 0.5);
+    }
+}
+
+private class LeftwardsBeam extends BeamImpl implements Beam {
+
+    LeftwardsBeam(BeamType beamType) {
+        super(beamType);
+        mOrigin = new PVector(width - 1, nextInt(height));
+        mPosition = mOrigin.get();
+        setVectorsAndAngle(beamType);
+    }
+
+    LeftwardsBeam(BeamType beamType, PVector origin, int colourId) {
+        super(beamType, origin, colourId);
+        setVectorsAndAngle(beamType);
+    }
+
+    private void setVectorsAndAngle(BeamType beamType) {
+        mVelocity = new PVector(-beamType.getVelocity(), 0);
+        mAcceleration = new PVector(-beamType.getAcceleration(), 0);
+        mAngle = PI + HALF_PI;
+    }
+
+    @Override
+    boolean isGone() {
+        return mPosition.x + mLength * mSize < 0;
+    }
+
+    @Override
+    void move() {
+        super.move();
+        mLength = min((mOrigin.x - mPosition.x) / mSize + 1, BEAM_MAX_LENGTH);
+    }
+
+    @Override
+    void draw() {
+        draw(mPosition.x - mSize * 0.5, mPosition.y + mSize * 0.5);
+    }
+}
+
+private class RightwardsBeam extends BeamImpl implements Beam {
+
+    RightwardsBeam(BeamType beamType) {
+        super(beamType);
+        mOrigin = new PVector(0, nextInt(height));
+        mPosition = mOrigin.get();
+        setVectorsAndAngle(beamType);
+    }
+
+    RightwardsBeam(BeamType beamType, PVector origin, int colourId) {
+        super(beamType, origin, colourId);
+        setVectorsAndAngle(beamType);
+    }
+
+    private void setVectorsAndAngle(BeamType beamType) {
+        mVelocity = new PVector(beamType.getVelocity(), 0);
+        mAcceleration = new PVector(beamType.getAcceleration(), 0);
+        mAngle = HALF_PI;
+    }
+
+    @Override
+    boolean isGone() {
+        return mPosition.x - mLength * mSize >= width;
+    }
+
+    @Override
+    void move() {
+        super.move();
+        mLength = min((mPosition.x - mOrigin.x) / mSize + 1, BEAM_MAX_LENGTH);
+    }
+
+    @Override
+    void draw() {
+        draw(mPosition.x + mSize * 0.5, mPosition.y - mSize * 0.5);
+    }
 }
