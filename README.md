@@ -1,5 +1,5 @@
 # Nexus
-A Processing sketch inspired by Android's Nexus Live Wallpaper.
+Processing sketch inspired by Android's Nexus Live Wallpaper
 
 ![First screenshot of Nexus](https://github.com/adjl/Nexus/raw/master/img/screenshot0.png)
 
